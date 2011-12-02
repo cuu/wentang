@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://127.0.0.1/doku/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://127.0.0.1/doku/feed.php">
+        <title>玟唐传播</title>
+        <description></description>
+        <link>http://127.0.0.1/doku/</link>
+        <image rdf:resource="http://127.0.0.1/doku/lib/tpl/guu/images/favicon.ico" />
+       <dc:date>2011-11-28T19:13:57+08:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://127.0.0.1/doku/doku.php?id=start&amp;rev=1322477076&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://127.0.0.1/doku/lib/tpl/guu/images/favicon.ico">
+        <title>玟唐传播</title>
+        <link>http://127.0.0.1/doku/</link>
+        <url>http://127.0.0.1/doku/lib/tpl/guu/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://127.0.0.1/doku/doku.php?id=start&amp;rev=1322477076&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2011-11-28T18:44:36+08:00</dc:date>
+        <title>start - created</title>
+        <link>http://127.0.0.1/doku/doku.php?id=start&amp;rev=1322477076&amp;do=diff</link>
+        <description>FUCK yeah!
+
+	*  FUCK
+	*  SHIT
+	*  SEX</description>
+    </item>
+</rdf:RDF>

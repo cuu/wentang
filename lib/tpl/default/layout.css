@@ -1,0 +1,129 @@
+/**
+ * Tableless Layout for default template
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author moraes <moraes@tipos.com.br>
+ */
+
+html
+{
+	background:#fff;
+	color:#000;
+}
+div
+{
+	background-color:transparent ;
+	color:#000;
+}
+input,textarea
+{
+	background:#fff;
+	color:#000;
+}
+body
+{
+	background:#fff !important;
+	color:#000;
+}
+html > body div.dokuwiki textarea.edit 
+{
+	background:#fff;
+	color:#000;
+}
+html > body div.dokuwiki input.button, html > body div.dokuwiki button.button 
+{
+	background:#fff;
+	color:#000;
+}
+html > body div.dokuwiki input.edit, html > body div.dokuwiki select.edit
+{
+	background:#fff; color:#000;
+}
+/* -------------- top row --------------- */
+div.dokuwiki .header {
+  padding: 3px 0 0 2px;
+}
+
+div.dokuwiki .pagename {
+  float: left;
+  font-size: 200%;
+  font-weight: bolder;
+  color: __background_alt__;
+  text-align: left;
+  vertical-align: middle;
+}
+
+div.dokuwiki .pagename a {
+  color: __extern__ !important;
+  text-decoration: none !important;
+}
+
+div.dokuwiki .logo {
+  font-size: 220%;
+  font-weight: bolder;
+  text-align: right;
+  vertical-align: middle;
+}
+
+div.dokuwiki .logo a {
+  color: __background_alt__ !important;
+  text-decoration: none !important;
+  font-variant: small-caps;
+  letter-spacing: 2pt;
+}
+
+/* ---------------  top and bottom bar ---------------- */
+div.dokuwiki .bar {
+  border-top: 1px solid __border__;
+  border-bottom: 1px solid __border__;
+  background: __background_alt__;
+  padding: 0.1em 0.15em;
+  clear: both;
+}
+
+div.dokuwiki .bar-left {
+  float: left;
+}
+
+div.dokuwiki .bar-right {
+  float: right;
+  text-align: right;
+}
+
+div.dokuwiki #bar__bottom {
+  margin-bottom: 3px;
+}
+
+/* ------------- File Metadata ----------------------- */
+
+div.dokuwiki div.meta {
+  clear: both;
+  margin-top: 1em;
+  color: __text_alt__;
+  font-size: 70%;
+}
+
+div.dokuwiki div.meta div.user {
+  float: left;
+}
+
+div.dokuwiki div.meta div.doc {
+  text-align: right;
+}
+
+
+div.menu a
+{
+	color:black !important;
+	display:block !important;
+	width:60px;
+	height:29px;
+	line-height:29px;
+	border:1px dashed black;
+}
+div.menu a:hover
+{
+	color:red !important;	
+	border:1px dashed red;
+}
+

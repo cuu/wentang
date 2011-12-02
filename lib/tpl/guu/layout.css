@@ -1,0 +1,238 @@
+/**
+ * Tableless Layout for default template
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author moraes <moraes@tipos.com.br>
+ */
+body
+{
+	background:black !important;
+	color:#ccc;
+}
+/* -------------- top row --------------- */
+div.dokuwiki
+{
+	width:1024px;
+}
+div.dokuwiki .header {
+  padding: 3px 0 0 2px;
+	margin-bottom:16px;
+}
+
+div.dokuwiki .pagename {
+  float: left;
+  font-size: 200%;
+  font-weight: bolder;
+  color: __background_alt__;
+  text-align: left;
+  vertical-align: middle;
+}
+
+div.dokuwiki .pagename a {
+  color: __extern__ !important;
+  text-decoration: none !important;
+}
+
+div.dokuwiki .logo {
+	margin-left:auto;
+	margin-right:auto;
+  font-size: 220%;
+  font-weight: bolder;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+/* ---------------  top and bottom bar ---------------- */
+div.dokuwiki .bar {
+  border-top: 1px solid __border__;
+  border-bottom: 1px solid __border__;
+  background: __background_alt__;
+ /* padding: 0.1em 0.15em; */
+  clear: both;
+}
+
+div.dokuwiki .bar-left {
+  float: left;
+}
+
+div.dokuwiki .bar-right {
+  float: right;
+  text-align: right;
+}
+
+div.dokuwiki #bar__bottom {
+  margin-bottom: 3px;
+}
+
+/* ------------- File Metadata ----------------------- */
+
+div.dokuwiki div.meta {
+  clear: both;
+  margin-top: 1em;
+  color: __text_alt__;
+  font-size: 70%;
+}
+
+div.dokuwiki div.meta div.user {
+  float: left;
+}
+
+div.dokuwiki div.meta div.doc {
+  text-align: right;
+	color:__background__;
+}
+
+/****************** guu style ***************************/
+div.menu
+{
+	float:left;
+	font-size:14px;
+	color:#ccc;
+	margin-left:10px;
+	margin-top:29px;
+}
+div.menu a
+{
+	text-align:center;
+	color:white !important;
+	display:block !important;
+	width:60px;
+	height:29px;
+	line-height:29px;
+	border:1px dashed black;
+}
+div.menu a:hover
+{
+	
+	color:red !important;	
+	border:1px dashed red;
+}
+
+#menu1 { margin-left:70px; }
+#menu2 { }
+#menu3 { }
+#menu4 { }
+#menu5 { }
+#menu6 { }
+#menu7 { }
+#menu8 { }
+#menu9 { }
+
+div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki h5 
+{
+	border-bottom: none !important;
+}
+
+.add_big_img
+{
+	width:798px;
+	height:798px;
+	border:2px  dashed gray;
+	background:white url('images/add_bg.png') center no-repeat;
+	cursor:pointer;
+}
+
+.add_thumb
+{
+	width:92px;
+	height:92px;
+	background:white url('images/add_bg_32.png') center no-repeat;
+	border:2px dashed gray;
+	cursor:pointer;
+
+}
+#bottom_bar
+{
+	float:left;
+}
+#bottom_bar div
+{
+	float:left;
+	overflow:hidden;
+}
+#left_scroll
+{
+	float:left;
+	overflow:hidden;
+	cursor:pointer;
+}
+
+#right_scroll
+{
+	float:left;
+	cursor:pointer;
+}
+div
+{
+	margin:0px; padding:0px;
+}
+
+.pic_grid
+{
+	width:980px;
+	height:600px;
+	border:1px solid #ccc;
+}
+#pic_grid_add_pic
+{
+	font-weight:bold;
+}
+.pic_grid .pic
+{
+	width:96px;
+	height:96px;
+	margin:9px;
+	border:none;
+	float:left;
+	text-align:center;
+
+	cursor:pointer;
+}
+.pic_grid .add_pic
+{
+	width:94px;
+	height:94px;
+	margin:9px;
+	text-align:center;
+	border:2px dashed #ccc;
+
+	line-height:94px;
+	float:left;
+	cursor:pointer;
+}
+#add_pic_dialog input
+{
+	background:none;
+}
+#add_pic_dialog #add_thumb
+{
+	width:96px;
+	height:96px;
+	text-align:center;
+	float:left;
+	margin:10px;
+	border:2px dashed #ccc;
+	overflow:hidden;
+}
+
+#add_pic_dialog #big_image
+{
+	margin-top:10px;
+	line-height:48px;
+	text-align:center;
+	float:left;
+	width:485px;
+	height:280px;
+	margin-right:10px;
+	border:2px dashed #ccc;
+	overflow:hidden;
+}
+#add_pic_dialog .tips
+{
+	font-weight:bold;
+	font-size:13px;
+	color:red;
+	padding:10px;
+	text-align:center;
+}
