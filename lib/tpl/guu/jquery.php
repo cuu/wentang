@@ -10,7 +10,8 @@ jQuery(document).ready(function($) {
 		});
 		// this is to clean the output from last time
  	});
- 
+
+	 
 	$("#pic_grid_add_pic").click( function()
 	{
 		$("#add_pic_dialog").dialog({width:'auto',height:'auto',resizable: false });  	
@@ -22,6 +23,16 @@ jQuery(document).ready(function($) {
 		$("#add_pic_dialog").dialog('close');		
 	});
 	
+
+	$("#add_big_video > #add").click (function()
+	{
+		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
+	});
+	
+	$("#add_video_dialog > #done").click (function ()
+	{
+		$("#add_video_dialog").dialog('close');
+	});
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
 	var button = $('#add_thumb > #button1'), interval;

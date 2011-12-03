@@ -130,7 +130,7 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 	height:798px;
 	border:2px  dashed gray;
 	background:white url('images/add_bg.png') center no-repeat;
-	cursor:pointer;
+/*	cursor:pointer; */
 }
 
 .add_thumb
@@ -139,7 +139,7 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 	height:92px;
 	background:white url('images/add_bg_32.png') center no-repeat;
 	border:2px dashed gray;
-	cursor:pointer;
+/*	cursor:pointer; */
 
 }
 #bottom_bar
