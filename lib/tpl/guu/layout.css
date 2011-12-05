@@ -137,7 +137,9 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 {
 	width:92px;
 	height:92px;
-	background:white url('images/add_bg_32.png') center no-repeat;
+/*	background:white url('images/add_bg_32.png') center no-repeat; */
+	background:white;
+
 	border:2px dashed gray;
 /*	cursor:pointer; */
 

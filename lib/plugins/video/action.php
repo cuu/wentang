@@ -32,7 +32,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 
 			echo "<center><div class='add_big_img' id='add_big_video' >";
 			echo "<input style='width:80px;height:25px;' id='add' type='button' value='Add' /><br />";
-				echo "<span>Add image/video ,Size Max layout 798x798 px".
+				echo "<span>Add image/video ,Size Max layout 798x798 px,Only <b>flv</b> can be supported ".
 				"Video upload Max:".ini_get('upload_max_filesize').
 				"</span>"; 
 			echo "</div></center>";
@@ -41,20 +41,25 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 
 			echo "<div id='bottom_bar' style='background:#888; width:933px;height:96px;'>";
 			echo "<div class='add_thumb' id='add_video_thumb'>";
-			echo "<input style='width:60px;height:25px;' id='add' type='button' value='Add' /> <br />";
-			echo "<span> Add thumb image for video</span>";
+			echo "<input style='width:60px;height:25px;' id='button3' type='button' value='Add' /> <br />";
+			echo "<span> Add thumb for video, 96x96</span>";
 			echo "</div>";
 			echo "</div>";
 
 			echo "<div id='right_scroll'><img src='lib/tpl/guu/images/right_scroll.png' ></div>";
 echo <<<EOF
 <div id="add_video_dialog" style="display:none; background-color:transparent;">
-	<input type="button" value="upload" id="add_video" style="height:25px;width:80px;" /> <br />
+	<input type="button" value="upload video" id="add_video" style="height:25px;width:120px;" /> 
+	<input type="button" value="upload thumb" id="add_video_thumb" style="height:25px; width:120px; margin-left:15px;" />
+	<br />
+	
 	<br /> Or&nbsp; you can embed a video from youku or tudou <br /> 
 	<span>URL:&nbsp;</span>
-	<input type="text" size=128 id="url_bar" /> <br /> <br />
+	<textarea id="url_bar" cols="60" rows="10" ></textarea> <br /> <br />
 	<input type="button" id="done" value="Done" style="height:25px;width:80px;"/>
 </div>
+<input type="hidden" id="check" value="-1" />
+
 EOF;
 		$event->preventDefault();  
 	}
