@@ -30,12 +30,12 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	function result(&$event, $param){
 		if($event->data != $this->handle) return;
 
-			echo "<center><div class='add_big_img' id='add_big_video' >";
+			echo "<center><div class='add_big_img' id='add_big_video' style='overflow:hidden;' ><center>";
 			echo "<input style='width:80px;height:25px;' id='add' type='button' value='Add' /><br />";
 				echo "<span>Add image/video ,Size Max layout 798x798 px,Only <b>flv</b> can be supported ".
 				"Video upload Max:".ini_get('upload_max_filesize').
 				"</span>"; 
-			echo "</div></center>";
+			echo "</center></div></center>";
 //------------------------------------------------------
 			echo "<div id='left_scroll'><img src='lib/tpl/guu/images/left_scroll.png' > </div>";
 
@@ -50,9 +50,9 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 echo <<<EOF
 <div id="add_video_dialog" style="display:none; background-color:transparent;">
 	<input type="button" value="upload video" id="add_video" style="height:25px;width:120px;" /> 
-	<input type="button" value="upload thumb" id="add_video_thumb" style="height:25px; width:120px; margin-left:15px;" />
+	<input type="button" value="upload thumb" id="add_video_thumb_pic" style="height:25px; width:120px; margin-left:15px;" />
 	<br />
-	
+	<span id='info'></span>	
 	<br /> Or&nbsp; you can embed a video from youku or tudou <br /> 
 	<span>URL:&nbsp;</span>
 	<textarea id="url_bar" cols="60" rows="10" ></textarea> <br /> <br />
