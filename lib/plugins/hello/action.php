@@ -33,9 +33,9 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 
 		while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0 pid 1 thumb 2 data
 		{
-			echo "<div class='pic' >"."<img src='".$line[2]."' /></div>";
+			echo "<div class='pic' >"."<a rel='group1'  href='".$line[2]."'>"."<img src='".$line[1]."' /></a></div>";
 		}
-		
+		mysql_close($link);	
 	}
 
 	function result(&$event, $param){

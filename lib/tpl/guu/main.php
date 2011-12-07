@@ -55,13 +55,14 @@ if (!defined('DOKU_INC')) die();
 
 <?php include_once "ajaxupload.php"; ?>
 
+<?php include_once "fancybox.php"; ?>
 <?php include_once "jquery.php"; ?>
 	
   <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
 </head>
 
 <body>
-<center>
+<center id="container">
 <div class="dokuwiki">
 
   <div class="stylehead">

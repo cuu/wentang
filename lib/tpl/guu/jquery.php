@@ -1,16 +1,26 @@
 <script type="text/javascript" >
-
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
+
+
+$("#container").fadeIn(3400);	
+$("#container").css("display","show");
 
 	$('#add_pic_dialog').bind('dialogclose', function(event) {
 		$("#big_image img:last-child").remove();
 		$("#big_image").children().each( function() {
 			$(this).show();
 		});
+		
+		$("#add_pic_dialog #check").val("-1");
 		// this is to clean the output from last time
  	});
+	
+	$('#add_video_dialog').bind('dialogclose', function(event) {
 
+		$("#add_video_dialog #check").val("-1");
+		
+	});
 	 
 	$("#pic_grid_add_pic").click( function()
 	{
@@ -18,29 +28,52 @@ jQuery(document).ready(function($) {
 		
 	});
 	
-	$("#add_pic_dialog > #upload > input").click ( function()
+	$("#add_pic_dialog  #upload  input").click ( function()
 	{
-		$("#add_pic_dialog").dialog('close');		
+		$("#add_pic_dialog").dialog('close');
+		location.reload(true);	
 	});
 	
 
-	$("#add_big_video > #add").click (function()
+	$("#add_big_video  #add").click (function()
 	{
 		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
 	});
-	
-	$("#add_video_dialog > #done").click (function ()
+	$("#add_video_thumb #button3").click (function ()
+	{
+		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
+	});	
+
+	$("#add_video_dialog  #done").click (function ()
 	{
 		$("#add_video_dialog").dialog('close');
+//		$("#add_video_thumb #check").val("-1");
+		location.reload(true);
 	});
 
+	$("#add_video_thumb").click( function ()
+	{
+		var html= "<?php 
 
+echo   "<div class='add_big_img' id='add_big_video' style='overflow:hidden;' ><center>";
+echo "<input style='width:80px;height:25px;' id='add' type='button' value='Add' /><br />";
+echo "<span>Add image/video ,Size Max layout 798x798 px,Only <b>flv</b> can be supported "."Video upload Max:".ini_get('upload_max_filesize')."</span>";
+echo "</center></div>";
+?>";
+		$("#video_big_area").fadeOut("slow").html(html).fadeIn("slow");
+
+	});
+	
+	$("#to_show_video").click(function()
+	{
+		
+	});
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
 	var button = $('#add_thumb #button1'), interval;
 	if( button.length == 0) 
 	{ 
-	 }
+	}
 	else
 	{
 	new AjaxUpload(button,{
@@ -70,9 +103,38 @@ jQuery(document).ready(function($) {
 			info.text("Done! "+response);					
 			if( response.indexOf("success") != -1)
 			{
+				var real_file ="data/media/"+file;
+
+				$("#add_thumb img:last-child").remove();
+				$("#add_thumb").children().each( function() {
+					$(this).show();
+				});
+				
+				
 				info.text("Done!");
 				info.fadeIn("slow");
 				info.fadeOut(3500);
+
+				$("#add_thumb").children().each(function() {
+					$(this).hide();
+				});
+//				alert( $("#add_pic_dialog  #check").val() );	 -1
+
+				$.ajax({
+					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&thumb="+real_file+"&tab=pic",
+					success: function(data){
+//						alert(data);
+						if( parseInt(data) > 0 && parseInt( $("#add_pic_dialog #check").val()) == -1 )
+						{
+							$("#add_pic_dialog #check").val( data );
+							//alert( $("#add_pic_dialog #check").val() );
+						}
+					}
+				});
+				
+				$("#add_thumb").append("<img src='"+real_file+"' />")
+					
+ //              	$("#add_thumb img:last-child").draggable(); 
 				
 				
 			}else
@@ -131,7 +193,19 @@ jQuery(document).ready(function($) {
 					$(this).hide();
 				});
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
-				
+
+				$.ajax({
+					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&data="+real_file+"&tab=pic",
+					success: function(data){
+				//		alert(data);
+						if( !isNaN(parseInt(data))  && parseInt($("#add_pic_dialog #check").val() ) == -1 )
+						{
+							$("#add_pic_dialog #check").val( data );
+						//	alert( $("#add_pic_dialog #check").val() );
+						}
+					}
+				});
+	
 				$("#big_image").append("<img src='"+real_file+"' />")
 					
                	$("#big_image img:last-child").draggable(); 
@@ -149,7 +223,7 @@ jQuery(document).ready(function($) {
 
 
 
-	var button3 = $('#add_video_thumb #button3'), interval3;
+	var button3 = $('#add_video_dialog  #add_video_small_thumb'), interval3;
 	if(button3.length != 0)
 	{
 	new AjaxUpload(button3,{
@@ -196,7 +270,18 @@ jQuery(document).ready(function($) {
 					$(this).hide();
 				});
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
-				
+				$.ajax({
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&st="+real_file+"&tab=video",
+					success: function(data){
+				//		alert(data);
+						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+						{
+							$("#add_video_dialog #check").val( data );
+						//	alert( $("#add_pic_dialog #check").val() );
+						}
+					}
+				});
+	
 				$("#add_video_thumb").append("<img src='"+real_file+"' />")
 					
 //               	$("#add_video_thumb img:last-child").draggable(); 
@@ -268,8 +353,22 @@ jQuery(document).ready(function($) {
 				$("#add_big_video").append("<img src='"+real_file+"' />")
 					
                	$("#add_big_video img:last-child").draggable(); 
-				
-				
+
+				$.ajax({
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&thumb="+real_file+"&tab=video",
+					success: function(data){
+				//		alert(data);
+						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+						{
+							$("#add_video_dialog #check").val( data );
+						//	alert( $("#add_pic_dialog #check").val() );
+						}
+					}
+				});
+	
+//				$("#add_video_dialog img:last-child").remove();
+//				$("#add_video_dialog #video_area").append("<img src='"+real_file+"' />");
+
 			}else
 			{
 				info.text("Error!");
@@ -284,7 +383,7 @@ jQuery(document).ready(function($) {
 		//alert("selector erorr");
 	}
 
-
+	
 	var button5 = $('#add_video_dialog #add_video'), interval5;
 	if(button5.length != 0)
 	{
@@ -313,12 +412,12 @@ jQuery(document).ready(function($) {
 			// enable upload button
 			this.enable();
 			
-			info.text("Done! "+response);					
+			info.text("Done! "+response );					
 			if( response.indexOf("success") != -1)
 			{
 
 				var real_file ="data/media/"+file;
-				
+/*					
 				$("#add_big_video embed:last-child").remove();
 				$("#add_big_video").children().each( function() {
 					$(this).show();
@@ -333,18 +432,37 @@ jQuery(document).ready(function($) {
 				});
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
 				
-				$("#add_big_video").append('<embed type="application/x-shockwave-flash" src="player.swf?v1.3" id="f4Player" flashvars="video='+real_file+"  allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000" height="270" width="480"><noembed>You need Adobe Flash Player to watch this video. &lt;br&gt; &lt;</noembed>');
+				$("#add_big_video").append('<embed type="application/x-shockwave-flash" src="player.swf?v1.3" id="f4Player" flashvars="video='+real_file+'"  allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000" height="270" width="480"><noembed>You need Adobe Flash Player to watch this video. &lt;br&gt; &lt;</noembed>');
 				
 
 					
 //               	$("#add_big_video embed:last-child").draggable(); 
-				
+*/
+				$.ajax({
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+"&tab=video",
+					success: function(data){
+				//		alert(data);
+						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+						{
+							$("#add_video_dialog #check").val( data );
+						//	alert( $("#add_pic_dialog #check").val() );
+						}
+					}
+				});
+/*
+					$("#add_video_dialog #video_area").html('<embed type="application/x-shockwave-flash" src="http://127.0.0.1/doku/lib/tpl/guu/js/player.swf?v1.3" id="f4Player" flashvars="video='+real_file+'"  allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000" height="270" width="480">'+
+"<noembed>"+
+"You need Adobe Flash Player to watch this video. &lt;br&gt; "+
+'&lt;a href="http://get.adobe.com/flashplayer/"&gt;Download it from Adobe.&lt;/a&gt;'+
+'&lt;a href="http://gokercebeci.com/dev/f4player" title="flv player"&gt;flv player&lt;/a&gt;'+
+'</noembed>');
+*/
 				
 			}else
 			{
-				info.text("Error!");
-				info.fadeIn("slow");
-				info.fadeOut(3500);
+				info.text("Error!" + response);
+			//	info.fadeIn("slow");
+			//	info.fadeOut(3500);
 			}
 		
 		}
@@ -355,7 +473,11 @@ jQuery(document).ready(function($) {
 	}
 
 
-
+	$("a[rel=group1]").fancybox({
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'showNavArrows':'true'
+				});
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
 

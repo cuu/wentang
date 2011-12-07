@@ -126,8 +126,8 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 
 .add_big_img
 {
-	width:798px;
-	height:798px;
+	width:480px;
+	height:270px;
 	border:2px  dashed gray;
 	background:white url('images/add_bg.png') center no-repeat;
 /*	cursor:pointer; */
@@ -141,8 +141,15 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 	background:white;
 
 	border:2px dashed gray;
-/*	cursor:pointer; */
+	cursor:pointer; 
 
+}
+.video_small_thumb
+{
+	width:96px;
+	height:96px;
+	background:white;
+	
 }
 #bottom_bar
 {
@@ -237,4 +244,9 @@ div
 	color:red;
 	padding:10px;
 	text-align:center;
+}
+
+#container
+{
+	display:none;
 }
