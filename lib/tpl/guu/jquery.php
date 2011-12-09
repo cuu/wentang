@@ -1,4 +1,14 @@
+
+<script type="text/javascript" charset="utf-8" src="lib/tpl/guu/js/jquery.json-2.3.min.js"></script>
+
 <script type="text/javascript" >
+
+function validateURL(textval) {
+	if(textval.indexOf("http") == -1) return false;
+	else return true;
+}
+
+
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
 
@@ -34,11 +44,12 @@ $("#container").css("display","show");
 		location.reload(true);	
 	});
 	
-
-	$("#add_big_video  #add").click (function()
+	$("#add_big_video  input").click (function()
 	{
 		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
+		$("#add_video_dialog #url_bar ").val("");
 	});
+
 	$("#add_video_thumb #button3").click (function ()
 	{
 		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
@@ -48,6 +59,7 @@ $("#container").css("display","show");
 	{
 		$("#add_video_dialog").dialog('close');
 //		$("#add_video_thumb #check").val("-1");
+		$("#add_video_dialog #url_bar").val("");
 		location.reload(true);
 	});
 
@@ -68,6 +80,40 @@ echo "</center></div>";
 	{
 		
 	});
+
+	$(".video_thumb_container").hover(function()
+	{
+		
+		$(this).find("#close_img").fadeIn("fast");
+	},function()
+	{
+		$(this).find("#close_img").fadeOut("fast");
+	});
+
+	$(".video_thumb_container .close_img").click(function()
+	{
+		if (confirm("要删掉这个视频么？不要后悔哟"))
+		{
+			
+			$.ajax({
+				url:"mysql.php?delete=yes&tab=video&pid="+$(this).attr('rel'),
+				success:function(data)
+				{
+					if(data == "success")
+					{
+						alert("删除成功");
+						location.reload(true);
+					}else
+					{
+						alert("删除失败，错误:"+data);
+					}
+					
+				}
+			}); 
+		}
+	
+	});
+
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
 	var button = $('#add_thumb #button1'), interval;
@@ -472,7 +518,52 @@ echo "</center></div>";
 		//alert("selector erorr");
 	}
 
+	$("#add_video_dialog #url_bar").change(function()
+	{
+		var txt = $.trim( $(this).val() );
 
+		if( validateURL(txt))
+		{
+			$.ajax({
+				url: 'get_embed.php?url='+txt,
+				beforeSend: function() {
+					$("#add_video_dialog #ert").fadeIn("fast");
+  					$("#add_video_dialog #ert").html("Updating...");
+  				},
+				success: function( data ) {
+				//	alert(data);
+					var embedcode =  $.evalJSON( data ).data.object;
+					var thumb_img =  $.evalJSON( data ).data.img;
+					
+					if( embedcode != undefined )
+					{
+						$.ajax({
+							url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+embedcode+"&thumb="+thumb_img+"&tab=video",
+							success: function(data){
+								//alert(data);
+								if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+								{
+									$("#add_video_dialog #check").val( data );
+								//	alert( $("#add_pic_dialog #check").val() );
+								}
+							}
+						});	
+						$("#add_video_dialog #url_bar").val( embedcode);
+					}
+
+					$("#add_video_dialog #ert").html("Done...");
+					$("#add_video_dialog #ert").fadeOut(2500);
+				}
+			});
+			
+		}
+		else
+		{
+			
+		}
+		
+	});
+		
 	$("a[rel=group1]").fancybox({
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none',

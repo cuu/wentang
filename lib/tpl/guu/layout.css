@@ -154,11 +154,11 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 #bottom_bar
 {
 	float:left;
+	background: black;
 }
 #bottom_bar div
 {
 	float:left;
-	overflow:hidden;
 }
 #left_scroll
 {
