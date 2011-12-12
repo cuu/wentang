@@ -3,6 +3,8 @@
 if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 require_once(DOKU_INC.'inc/init.php');
 
+require_once(DOKU_INC.'inc/common.php');
+$INFO=pageinfo();
 /**
  * Handle file uploads via XMLHttpRequest
  */

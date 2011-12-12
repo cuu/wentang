@@ -1,4 +1,5 @@
 
+<script type="text/javascript" charset="utf-8" src="lib/tpl/guu/js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" charset="utf-8" src="lib/tpl/guu/js/jquery.json-2.3.min.js"></script>
 
 <script type="text/javascript" >
@@ -15,6 +16,50 @@ jQuery(document).ready(function($) {
 
 $("#container").fadeIn(3400);	
 $("#container").css("display","show");
+
+
+	$.easing.backout = function(x, t, b, c, d){
+		var s=1.70158;
+		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+	};
+
+	$.easing.easeInQuad =  function (x, t, b, c, d) {
+		return c*(t/=d)*t + b;
+	};	
+
+	$('#screen').scrollShow({
+		view:'#view',
+		content:'#images',
+		easing:'backout',
+		wrappers:'link,crop',
+		navigators:'a[id=left_scr],a[id=right_scr]',
+		navigationMode:'s',
+		circular:true,
+		start:0
+	});
+
+	$("#add_pic_dialog #make_it_default").change( function()
+	{
+		if( $(this).attr('checked') == "checked")
+		{
+			var thumb_img = $("#add_pic_dialog #add_thumb img:last-child").attr("src");
+
+			if( thumb_img != undefined )
+			{
+				$.ajax({
+					url:"mysql.php?default="+thumb_img+"&parent=<?php echo $_GET["album"]; ?>",
+					success:function(data)
+					{
+						
+					}
+				});
+			}else
+			{
+				alert("亲，请先选择一张存在的缩略图吧");
+			}
+		}
+    
+	});
 
 	$('#add_pic_dialog').bind('dialogclose', function(event) {
 		$("#big_image img:last-child").remove();
@@ -44,6 +89,23 @@ $("#container").css("display","show");
 		location.reload(true);	
 	});
 	
+	$(".add_album #add ").click (function()
+	{
+		$.ajax({
+			url:"mysql.php?addalbum=yes",
+			success:function(data)
+			{
+				if(data == "success")
+				{
+					location.reload(true);
+				}else
+				{
+					alert("创建相册失败："+data);
+				}
+			}
+		});
+	});	
+
 	$("#add_big_video  input").click (function()
 	{
 		$("#add_video_dialog").dialog( {width:'auto',height:'auto',resizable: false } );
@@ -81,6 +143,37 @@ echo "</center></div>";
 		
 	});
 
+	$(".pic_container").hover(function()
+	{
+		$(this).find("#close_img").fadeIn("fast");
+	},function()
+	{
+		$(this).find("#close_img").fadeOut("fast");
+	});
+
+	$(".pic_container .close_img").click(function()
+	{
+        if (confirm("要删掉这个图片么？不要后悔哟"))
+        {
+            
+            $.ajax({
+                url:"mysql.php?delete=yes&tab=pics&pid="+$(this).attr('rel'),
+                success:function(data)
+                {
+                    if(data == "success")
+                    {
+                        alert("删除成功");
+                        location.reload(true);
+                    }else
+                    {
+                        alert("删除失败，错误:"+data);
+                    }
+                    
+                }
+            }); 
+        }	
+	});
+
 	$(".video_thumb_container").hover(function()
 	{
 		
@@ -89,7 +182,7 @@ echo "</center></div>";
 	{
 		$(this).find("#close_img").fadeOut("fast");
 	});
-
+	
 	$(".video_thumb_container .close_img").click(function()
 	{
 		if (confirm("要删掉这个视频么？不要后悔哟"))
@@ -167,9 +260,9 @@ echo "</center></div>";
 //				alert( $("#add_pic_dialog  #check").val() );	 -1
 
 				$.ajax({
-					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&thumb="+real_file+"&tab=pic",
+					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&thumb="+real_file+"&tab=pics&parent=<?php echo $_GET["album"]; ?>",
 					success: function(data){
-//						alert(data);
+						alert(data);
 						if( parseInt(data) > 0 && parseInt( $("#add_pic_dialog #check").val()) == -1 )
 						{
 							$("#add_pic_dialog #check").val( data );
@@ -241,7 +334,7 @@ echo "</center></div>";
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
 
 				$.ajax({
-					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&data="+real_file+"&tab=pic",
+					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&data="+real_file+"&tab=pics&parent=<?php echo $_GET["album"] ?>",
 					success: function(data){
 				//		alert(data);
 						if( !isNaN(parseInt(data))  && parseInt($("#add_pic_dialog #check").val() ) == -1 )

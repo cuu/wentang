@@ -106,7 +106,7 @@ div.menu a:hover
 {
 	
 	color:red !important;	
-	border:1px dashed red;
+	border:1px dashed black;
 }
 
 #menu1 { margin-left:70px; }
@@ -141,7 +141,8 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 	background:white;
 
 	border:2px dashed gray;
-	cursor:pointer; 
+	cursor:pointer;
+	margin-top:5px; 
 
 }
 .video_small_thumb
@@ -154,7 +155,10 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 #bottom_bar
 {
 	float:left;
+	height:97px;
 	background: black;
+	vertical-align: baseline;
+
 }
 #bottom_bar div
 {
@@ -181,7 +185,7 @@ div
 {
 	width:980px;
 	height:600px;
-	border:1px solid #ccc;
+	border:1px solid #000;
 }
 #pic_grid_add_pic
 {
@@ -198,6 +202,30 @@ div
 
 	cursor:pointer;
 }
+.add_album
+{
+	width:94px;
+	height:94px;
+	margin:9px;
+	text-align:center;
+	border:2px dashed #ccc;
+	line-height:94px;
+	float:left;
+	cursor:pointer;	
+}
+.album_container
+{
+    width:96px;
+    height:96px;
+    margin:9px;
+    border:none;
+    float:left;
+    text-align:center;
+
+    cursor:pointer;
+	
+}
+
 .pic_grid .add_pic
 {
 	width:94px;
@@ -250,3 +278,57 @@ div
 {
 	display:none;
 }
+
+
+
+.video_thumb_container
+{
+}
+
+/* bottom scroll show  */
+#screen{
+    width:980px;
+    padding:0;
+}    
+    #screen li{ 
+        float:left;
+        list-style:none;
+    }   
+    #screen .jq-ss-crop{
+        margin:5px 5px;
+        border:1px solid #FFC;
+        float:left;    
+        width:100px !important;
+        height:100px !important;
+        background-color:#ccc;  
+    }   
+
+
+        #left_scr,#right_scr{
+            font-weight:bolder;
+            font-size:36px;
+            margin-top:65px;
+            display:block;
+            text-decoration:none;
+            color:red;
+        }
+    #view{
+        margin:20px;
+        width:770px;
+        border:1px  solid black;
+        height:120px;
+        overflow:hidden;
+/*      background-color:; */
+    }
+    #view li
+    {
+         position:relative;
+    }
+        #images{
+            width:9999px !important;
+            width:9999px;
+            padding:0;
+        }
+            #images li img{
+                border:0;
+            }

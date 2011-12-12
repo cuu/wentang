@@ -53,10 +53,24 @@ if (!defined('DOKU_INC')) die();
 
   <link rel="shortcut icon" href="<?php echo tpl_getFavicon() ?>" />
 
-<?php include_once "ajaxupload.php"; ?>
+<?php 
+	if($INFO['perm'] ==AUTH_ADMIN )
+	{
+		include_once "ajaxupload.php"; 
+	}
 
-<?php include_once "fancybox.php"; ?>
-<?php include_once "jquery.php"; ?>
+	include_once "fancybox.php"; 
+	
+	include_once "jquery.scrollshow.php";
+
+	if($INFO['perm'] ==AUTH_ADMIN )
+	{
+		include_once "jquery.php"; 
+	}else
+	{
+		include_once "jquery_noadmin.php";
+	}
+?>
 	
   <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
 </head>

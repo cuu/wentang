@@ -1,13 +1,14 @@
 <?php
 include_once "function.php";
 
-if ('cgi-fcgi' != php_sapi_name()) die();
+//if ('cgi-fcgi' != php_sapi_name()) die();
 
 if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 require_once(DOKU_INC.'inc/init.php');
 require_once(DOKU_INC.'inc/auth.php');
+require_once(DOKU_INC.'inc/common.php');
+$INFO = pageinfo();
 
-//var_dump($INFO);
 
 $sqlsrv = "127.0.0.1";
 $sqlusr = "root";
@@ -25,6 +26,10 @@ $table		 = getFormValue("tab"   );
 $delete      = getFormValue("delete");
 $pid		 = getFormValue("pid"   );
 
+$add_album   = getFormValue("addalbum");
+$parent		 = getFormValue("parent"  );
+
+$default     = getFormValue("default");
 
 function run_sql($sql)
 {
@@ -52,6 +57,18 @@ function run_sql($sql)
     }   
 }
 $sql = "";
+	if( isset($default) && $default != "")
+	{
+		$sql = "update pic set data = '".$default."' where pid=".$parent;
+		run_sql($sql);
+		die("success");
+	}
+	if(strcmp($add_album,"yes") == 0)
+	{
+		$sql = "insert into pic values()";
+		run_sql($sql);
+		die("success");
+	}
 
 	if(strcmp($delete,"yes") == 0 )
 	{
@@ -65,7 +82,8 @@ $sql = "";
 	{ //only thumb
 		if( intval($id) == -1)
 		{
-			$sql = "insert into ".$table." (thumb) VALUES('".$thumb."')";
+			if( $parent == "" || !is_numeric($parent) ) die("You are a fucker");
+			$sql = "insert into ".$table." (parent_id,thumb) VALUES(".$parent.",'".$thumb."')";
 		}
 		else if( is_numeric ($id) && intval($id) >= 0 )
 		{
@@ -77,7 +95,8 @@ $sql = "";
 	{
 		if( intval($id) == -1)
 		{
-			$sql = "insert into ".$table." (data) VALUES('".$data."')";
+			if( $parent == "" || !is_numeric($parent) ) die("You are a fucker");
+			$sql = "insert into ".$table." (data,parent_id) VALUES(".$data.",'".$parent."')";
 		}else if ( is_numeric ($id) && intval($id) >= 0 )
 		{
 			$sql = "update ".$table." set data='".$data."' where pid=".$id;
