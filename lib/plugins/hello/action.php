@@ -54,7 +54,7 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
         while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0 pid 1 thumb 2 data
         {
 
-            echo "<div class='album_container'>"."<a  href='?do=hello&album=".$line[0]."'>"."<img alt='album' src='".$line[1]."' /></a>
+            echo "<div class='album_container'>"."<a  href='?do=hello&album=".$line[0]."'>"."<img alt='album' src='".$line[2]."' /></a>
 				<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a></div>";
         }
 		

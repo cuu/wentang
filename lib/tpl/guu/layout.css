@@ -201,6 +201,7 @@ div
 	text-align:center;
 
 	cursor:pointer;
+	overflow:hidden;
 }
 .add_album
 {
@@ -223,7 +224,7 @@ div
     text-align:center;
 
     cursor:pointer;
-	
+	overflow:hidden;	
 }
 
 .pic_grid .add_pic
@@ -285,6 +286,10 @@ div
 {
 }
 
+.album_container
+{
+	position:relative;
+}
 /* bottom scroll show  */
 #screen{
     width:980px;

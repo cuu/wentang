@@ -56,13 +56,14 @@ if (!defined('DOKU_INC')) die();
 <?php 
 	if($INFO['perm'] ==AUTH_ADMIN )
 	{
-		include_once "ajaxupload.php"; 
+		include_once "ajaxupload.php";
+		include_once "slicebox.php"; 
 	}
 
 	include_once "fancybox.php"; 
 	
 	include_once "jquery.scrollshow.php";
-
+	
 	if($INFO['perm'] ==AUTH_ADMIN )
 	{
 		include_once "jquery.php"; 

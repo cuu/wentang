@@ -56,6 +56,13 @@ function run_sql($sql)
         echo "sql query empty"; mysql_close($link); die();
     }   
 }
+
+function delete_from_sql ($a,$b)
+{
+	// delete from
+	 
+}
+
 $sql = "";
 	if( isset($default) && $default != "")
 	{
@@ -96,7 +103,7 @@ $sql = "";
 		if( intval($id) == -1)
 		{
 			if( $parent == "" || !is_numeric($parent) ) die("You are a fucker");
-			$sql = "insert into ".$table." (data,parent_id) VALUES(".$data.",'".$parent."')";
+			$sql = "insert into ".$table." (data,parent_id) VALUES('".$data."',".$parent.")";
 		}else if ( is_numeric ($id) && intval($id) >= 0 )
 		{
 			$sql = "update ".$table." set data='".$data."' where pid=".$id;

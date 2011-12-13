@@ -6,6 +6,9 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 	public $handle="splash";
 	public $db = "guu_wentang";
 	public $table = "splash";
+	public $sqlsrv = "127.0.0.1";
+	public $sqlusr = "root";
+	public $sqlpas = "";
 
 	function register(&$controller) {	
 		$controller->register_hook('ACTION_ACT_PREPROCESS','BEFORE', $this, 'preprocess');
@@ -18,24 +21,36 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 		$event->preventDefault();
 		return true;
 	}
-
-	function get_data()
+	function connect_mysql()
 	{
-		$sqlserver="127.0.0.1";
-		$sqluser="root";
-		$sqlpass="";
-		$sql = "select * from ".$this->table;
-
-		$link = mysql_connect($sqlserver, $sqluser, $sqlpass) or die('Could not connect: ' . mysql_error());
+        $link = mysql_connect($this->sqlsrv, $this->sqlusr, $this->sqlpas) or die('Could not connect: ' . mysql_error());
 		mysql_select_db($this->db) or die('Could not select database '.$this->db);
 
+		return $link;
+	}
+	function get_data()
+	{
+		global $INFO;
+		$sql = "select * from ".$this->table;
+
+		$link = $this->connect_mysql();
 		$result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 
 		while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0:pid 1:thumb 2:data
 		{
-			
+			echo "<img src='".$line[2]."' />";
+			if( $INFO["perm"] ==AUTH_ADMIN ) { echo "<br />"; }
+//			echo "<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a>";
+				
 		}
 		mysql_close($link);	
+		if($INFO["perm"] ==AUTH_ADMIN )
+		{
+            echo "<div class='add_splash' >
+			<button id='add' >添加 </button>
+            <span id='splash_slider_add_splash'>ADD a new Splash</span>
+            </div>";
+		}
 	}
 
 	function result(&$event, $param){
@@ -44,12 +59,11 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 		if($event->data != $this->handle) return;
 		//DOKU_INC	
 
-			echo "<center><div class='splash_slider' >";
+			echo '<center><div  id="sb-slider" class="sb-slider" >';
 
 			$this->get_data();
 if ( $INFO['perm'] == AUTH_ADMIN )
 {
-			echo "<div class='add_splash' ><span id=''>ADD</span></div>";				
 			echo "</div></center>";
 	echo <<<EOT
 	<div id="add_splash_dialog" style="display:none; background-color:transparent;">
@@ -58,13 +72,14 @@ if ( $INFO['perm'] == AUTH_ADMIN )
 			JPG PNG GIF Only
 		</div>
 		<div id="add_splash" >
-			<input id="button4"  type='button' value='add'  style="width:55px;height:25px;line-height:25px;" />
+			<button id="add" > Add</button>
 			<br /> <br />
 			<span>Size: ?x? </span>
 		</div>
+		<div  id="preview" style="width:480px;height:320px;overflow:hidden;" > </div>
 
 		<input type="hidden" id="check" value="-1" />
-
+		<button id="done" >Done</button>
 	</div>
 	
 EOT;

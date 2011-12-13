@@ -43,6 +43,16 @@ $("#container").css("display","show");
 				'transitionOut'		: 'none',
 				'showNavArrows':'true'
 				});
+
+
+	$('#sb-slider').slicebox({
+			slicesCount			: 5,
+			disperseFactor		: 30,
+			sequentialRotation	: true,
+			sequentialFactor	: 100,
+			slideshow			: true
+	});
+
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
 

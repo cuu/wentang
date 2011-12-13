@@ -48,13 +48,13 @@ div.dokuwiki .pagename {
   float: left;
   font-size: 200%;
   font-weight: bolder;
-  color: __background_alt__;
+  color: #dee7ec;
   text-align: left;
   vertical-align: middle;
 }
 
 div.dokuwiki .pagename a {
-  color: __extern__ !important;
+  color: #436976 !important;
   text-decoration: none !important;
 }
 
@@ -66,7 +66,7 @@ div.dokuwiki .logo {
 }
 
 div.dokuwiki .logo a {
-  color: __background_alt__ !important;
+  color: #dee7ec !important;
   text-decoration: none !important;
   font-variant: small-caps;
   letter-spacing: 2pt;
@@ -76,7 +76,7 @@ div.dokuwiki .logo a {
 div.dokuwiki .bar {
   border-top: 1px solid __border__;
   border-bottom: 1px solid __border__;
-  background: __background_alt__;
+  background: #dee7ec;
   padding: 0.1em 0.15em;
   clear: both;
 }
@@ -99,7 +99,7 @@ div.dokuwiki #bar__bottom {
 div.dokuwiki div.meta {
   clear: both;
   margin-top: 1em;
-  color: __text_alt__;
+  color: #638c9c;
   font-size: 70%;
 }
 
@@ -207,3 +207,5 @@ visibility: hidden;
 {
 	border:1px solid #999;
 }
+
+/* for spalsh */

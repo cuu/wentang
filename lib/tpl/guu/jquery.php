@@ -83,6 +83,19 @@ $("#container").css("display","show");
 		
 	});
 	
+	$("button").button();
+	
+	$(".add_splash #add").click (function()
+	{
+		$("#add_splash_dialog").dialog({width:'auto',height:'auto',resizable: false });
+	});
+	
+	$("#add_splash_dialog #done").click(function()
+	{
+		$("#add_splash_dialog").dialog("close");
+		location.reload(true);
+	});
+
 	$("#add_pic_dialog  #upload  input").click ( function()
 	{
 		$("#add_pic_dialog").dialog('close');
@@ -142,6 +155,37 @@ echo "</center></div>";
 	{
 		
 	});
+
+	$(".album_container").hover (function()
+	{
+		$(this).find("#close_img").fadeIn("fast");
+	},function()
+	{
+		$(this).find("#close_img").fadeOut("fast");
+	});
+
+    $(".album_container .close_img").click(function()
+    {
+        if (confirm("要删掉这个［相册］么？不要后悔哟"))
+        {
+            
+            $.ajax({
+                url:"mysql.php?delete=yes&tab=pic&pid="+$(this).attr('rel'),
+                success:function(data)
+                {
+                    if(data == "success")
+                    {
+                        alert("删除成功");
+                        location.reload(true);
+                    }else
+                    {
+                        alert("删除失败，错误:"+data);
+                    }
+                    
+                }
+            }); 
+        }   
+    });
 
 	$(".pic_container").hover(function()
 	{
@@ -262,7 +306,7 @@ echo "</center></div>";
 				$.ajax({
 					url: "mysql.php?id="+ $("#add_pic_dialog  #check").val() +"&thumb="+real_file+"&tab=pics&parent=<?php echo $_GET["album"]; ?>",
 					success: function(data){
-						alert(data);
+				//		alert(data);
 						if( parseInt(data) > 0 && parseInt( $("#add_pic_dialog #check").val()) == -1 )
 						{
 							$("#add_pic_dialog #check").val( data );
@@ -656,7 +700,75 @@ echo "</center></div>";
 		}
 		
 	});
-		
+
+
+    var button6 = $('#add_splash #add'), interval6;
+    if( button6.length == 0) { }
+    else
+    {
+    new AjaxUpload(button6,{
+        action: 'php.php', 
+        name: 'qqfile',
+        onSubmit : function(file, ext){
+            // change button text, when user selects file           
+            button6.text('Uploading');
+            this.disable();
+            // Uploding -> Uploading. -> Uploading...
+            interval6 = window.setInterval(function(){
+                var text = button6.text();
+                if (text.length < 16){
+                    button6.text(text + '.');                    
+                } else {
+                    button6.text('Uploading');               
+                }
+            }, 200);
+        },
+        onComplete: function(file, response){
+            var info = $("#add_splash span");
+            button6.text('Add');
+            window.clearInterval(interval6);         
+            // enable upload button
+            this.enable();
+            
+            info.text("Done! "+response);                   
+            if( response.indexOf("success") != -1)
+            {
+                var real_file ="data/media/"+file;
+
+                $("#preview img:last-child").remove();
+                $("#preview").children().each( function() {
+                    $(this).show();
+                });
+                info.text("Done!");
+                info.fadeIn("slow");
+                info.fadeOut(3500);
+                $("#preview").children().each(function() {
+                    $(this).hide();
+                });
+//              alert( $("#add_pic_dialog  #check").val() );     -1
+                $.ajax({
+                    url: "mysql.php?id="+ $("#add_splash_dialog  #check").val()+"&data="+real_file+"&tab=splash&parent=9999",
+                    success: function(data){
+//                      alert(data);
+                        if( parseInt(data) > 0 && parseInt( $("#add_splash_dialog #check").val()) == -1 )
+                        {
+                            $("#add_splash_dialog #check").val( data );
+                            //alert( $("#add_pic_dialog #check").val() );
+                        }
+                    }
+                });
+                $("#preview").append("<img src='"+real_file+"' />")
+				$("#preview img:last-child").draggable();  
+            }else
+            {
+                info.text("Error!");
+                info.fadeIn("slow");
+                info.fadeOut(3500);
+            } 
+        }
+    });
+    }
+	
 	$("a[rel=group1]").fancybox({
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none',
