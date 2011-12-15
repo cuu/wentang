@@ -135,7 +135,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 				echo "<span> Add thumb for video, 96x96</span>";
 				echo "</li>";
 			}
-			echo '</ul></li>';
+			echo '<li class="video_thumb_container_blank"><a style="display:none;" class="to_show_video" href="#"><img style="display:none;"  src="" /></a></li></ul></li>';
 			echo '<li><a id="right_scr" href="#">&gt;&gt;</a></li>';
 			echo '</ul>';
 

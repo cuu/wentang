@@ -88,7 +88,7 @@ echo <<<EOT
     <div id="add_thumb" >
         <input id="button1"  type='button' value='add'  style="width:55px;height:25px;line-height:25px;" />
         <br /> <br />
-        <span>Size: 96x96 </span>
+        <span>Size: 184x184 </span>
     </div>
     <div id="big_image">
         <input id="button2" type="button" value="add" size=15 style="width:100px;height:25px;line-height:25px;" />

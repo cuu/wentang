@@ -138,6 +138,7 @@ $("#container").css("display","show");
 		location.reload(true);
 	});
 
+	/*
 	$("#add_video_thumb").click( function ()
 	{
 		var html= "<?php 
@@ -150,11 +151,71 @@ echo "</center></div>";
 		$("#video_big_area").fadeOut("slow").html(html).fadeIn("slow");
 
 	});
-	
+	*/
+
 	$("#to_show_video").click(function()
 	{
 		
 	});
+	
+	var splash_pos = new Array();
+
+	$(".splash_div").each (function(index)
+	{
+		splash_pos.push(  $(this).position()  );
+	
+	});
+
+	splash_pos.push( $("center").position() );
+
+	$(".splash_div").draggable( { zIndex: 2700  ,
+		axis: 'y',
+		cursor: 'crosshair',
+		start: function(event, ui) 
+		{
+			 
+		},
+		drag: function(event, ui) {
+			
+			$("#splash_slider_add_splash").html( splash_pos[0].top + " "+ splash_pos[1].top );
+		}
+	});
+
+
+	$(".splash_div").hover(function()
+	{
+		$(this).find("#close_img").fadeIn("fast");
+	},function()
+	{
+		$(this).find("#close_img").fadeOut("fast");
+	});
+
+    $(".splash_div .close_img").click(function()
+    {
+        if (confirm("要删掉这个［首页图片］么？不要后悔哟"))
+        {
+            
+            $.ajax({
+                url:"mysql.php?delete=yes&tab=splash&pid="+$(this).attr('rel'),
+                success:function(data)
+                {
+                    if(data == "success")
+                    {
+                        alert("删除成功");
+                        location.reload(true);
+                    }else
+                    {
+                        alert("删除失败，错误:"+data);
+                    }
+                    
+                }
+            }); 
+        }   
+    });
+
+
+
+
 
 	$(".album_container").hover (function()
 	{

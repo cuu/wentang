@@ -57,9 +57,10 @@ if (!defined('DOKU_INC')) die();
 	if($INFO['perm'] ==AUTH_ADMIN )
 	{
 		include_once "ajaxupload.php";
-		include_once "slicebox.php"; 
+	}else
+	{
+		include_once "slicebox.php";
 	}
-
 	include_once "fancybox.php"; 
 	
 	include_once "jquery.scrollshow.php";
@@ -80,10 +81,10 @@ if (!defined('DOKU_INC')) die();
 <center id="container">
 <div class="dokuwiki">
 
-  <div class="stylehead">
+  <div class="stylehead" style="">
 
-    <div class="header">
-      <div class="logo"  style="color:red;">
+    <div class="header" style="margin-top:10px; margin-bottom:20px;">
+      <div class="logo"  style="color:red;width:100%;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
 
       </div>
@@ -179,7 +180,6 @@ if (!defined('DOKU_INC')) die();
 
   </div>
 
-  <?php tpl_license(false);?>
 
 </div></center>
 <?php /*old includehook*/ @include(dirname(__FILE__).'/footer.html')?>

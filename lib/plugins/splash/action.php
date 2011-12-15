@@ -38,8 +38,16 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 
 		while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0:pid 1:thumb 2:data
 		{
-			echo "<img src='".$line[2]."' />";
-			if( $INFO["perm"] ==AUTH_ADMIN ) { echo "<br />"; }
+			if( $INFO["perm"] ==AUTH_ADMIN ) 
+			{ 
+				echo "<div class='splash_div'>";
+				echo "	<img src='".$line[2]."' />";
+				echo "<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a>";
+				echo "</div>";
+			}else
+			{
+				echo "<img src='".$line[2]."' />";
+			}
 //			echo "<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a>";
 				
 		}

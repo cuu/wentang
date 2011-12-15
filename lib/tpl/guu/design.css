@@ -15,7 +15,7 @@ body {
 
 /* the document */
 div.dokuwiki div.page {
-  margin: 4px 2em 0 1em;
+  margin: 4px 0px;
   text-align: justify;
 }
 
@@ -204,7 +204,6 @@ div.dokuwiki button.button {
 /* nice alphatransparency background except for IE <7 */
 html>body div.dokuwiki input.button,
 html>body div.dokuwiki button.button {
-  background:  __background__ url(images/buttonshadow.png) repeat-x bottom;
 }
 
 * html div.dokuwiki input.button,
@@ -254,7 +253,6 @@ div.dokuwiki a:visited {
 div.dokuwiki a:hover,
 div.dokuwiki a:active {
   color: __text__;
-  text-decoration: underline;
 }
 
 div.dokuwiki h1 a,
@@ -840,4 +838,14 @@ div.dokuwiki div.imagemeta img.thumb {
   float: left;
   margin-right: 0.1em;
 }
+
+a:-webkit-any-link 
+{
+    text-decoration:none;
+}
+a
+{
+    text-decoration:none;
+}
+   
 

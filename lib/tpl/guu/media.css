@@ -9,8 +9,9 @@ html > body div.dokuwiki input.edit, html > body div.dokuwiki select.edit
 
 html > body div.dokuwiki input.button, html > body div.dokuwiki button.button
 {
-	background:none !important;
-	color:gray;	
+	background:gray;
+	color:#fff;
+	border-radius:4px;	
 }
 #media__popup {
 	background:#fff !important;

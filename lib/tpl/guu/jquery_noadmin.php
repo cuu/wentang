@@ -46,12 +46,14 @@ $("#container").css("display","show");
 
 
 	$('#sb-slider').slicebox({
-			slicesCount			: 5,
-			disperseFactor		: 30,
-			sequentialRotation	: true,
-			sequentialFactor	: 100,
-			slideshow			: true
+		orientation			: 'h',
+		slicesCount			: 3,
+		disperseFactor		: 25,
+		sequentialRotation	: true,
+		sequentialFactor	: 140,
+		slideshow			: true
 	});
+
 
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
