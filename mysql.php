@@ -8,6 +8,7 @@ require_once(DOKU_INC.'inc/init.php');
 require_once(DOKU_INC.'inc/auth.php');
 require_once(DOKU_INC.'inc/common.php');
 $INFO = pageinfo();
+if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
 
 
 $sqlsrv = "127.0.0.1";
@@ -31,6 +32,18 @@ $parent		 = getFormValue("parent"  );
 
 $default     = getFormValue("default");
 
+$switch 	 = getFormValue("switch");
+$a 			 = getFormValue("a");
+$b			 = getFormValue("b");
+
+function connect_mysql()
+{
+	global $id, $sqlsrv,$sqlusr,$sqlpass,$sqldb, $table; 
+	$link = mysql_connect ( $sqlsrv, $sqlusr,$sqlpas) or die("mysql connect error".mysql_error() );
+	mysql_select_db($sqldb,$link);
+
+	return $link;
+}
 function run_sql($sql)
 {
 	global $id, $sqlsrv,$sqlusr,$sqlpass,$sqldb, $table;
@@ -82,6 +95,37 @@ $sql = "";
 		$sql = "delete  from ".$table." where pid=".$pid;
 		run_sql($sql);
 		die("success");	
+	}
+
+	if(strcmp( $switch,"yes") == 0)
+	{
+		$tmp_a = explode(",", $a);
+		$tmp_b = explode(",", $b);
+		$link = connect_mysql();
+		$sql_array=array();
+		
+		for($i=0;$i< count($tmp_a); $i++)
+		{
+			$tmp_a_id = substr($tmp_a[$i],6);
+			$tmp_b_id = substr($tmp_b[$i],6);
+			if(strcmp($tmp_a_id,$tmp_b_id) != 0)
+			{
+				if($table == "splash")
+				{
+					$sql1 = "select * from ".$table." where pid=".$tmp_b_id;	
+					$result1 = mysql_query($sql1);
+					if($result1){ $row1 = mysql_fetch_array($result1,MYSQL_NUM); }
+
+					$sql2 = "update ".$table." set thumb='".$row1[1]."',data='".$row1[2]."' where pid=".$tmp_a_id;
+					array_push($sql_array,$sql2);
+				}
+			}	
+		} //end for
+		for($i=0;$i< count($sql_array); $i++)
+		{
+			mysql_query($sql_array[$i]);
+		}
+		mysql_close($link); die("success");
 	}
 
 $sql = "";

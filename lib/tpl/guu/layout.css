@@ -230,7 +230,7 @@ div
     width:184px;
     height:184px;
     margin:9px 0 9px 9px;
-    border:1px solid #ed811f;
+    border:1px solid #888;
     float:left;
     text-align:center;
 
@@ -412,4 +412,8 @@ div
 }
 
 
+#sortable
+{
+	list-style:none;
+}
 

@@ -55,6 +55,15 @@ $("#container").css("display","show");
 	});
 
 
+    $(".album_container").hover (function()
+    {
+        $(this).css("border-color","#ed811f");
+        
+    },function()
+    {
+        $(this).css("border-color","#888");
+    });
+
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
 

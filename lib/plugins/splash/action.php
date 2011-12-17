@@ -40,10 +40,10 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 		{
 			if( $INFO["perm"] ==AUTH_ADMIN ) 
 			{ 
-				echo "<div class='splash_div'>";
+				echo "<li id='splash".$line[0]."' class='splash_div'>";
 				echo "	<img src='".$line[2]."' />";
 				echo "<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a>";
-				echo "</div>";
+				echo "</li>";
 			}else
 			{
 				echo "<img src='".$line[2]."' />";
@@ -52,27 +52,36 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 				
 		}
 		mysql_close($link);	
-		if($INFO["perm"] ==AUTH_ADMIN )
-		{
-            echo "<div class='add_splash' >
-			<button id='add' >添加 </button>
-            <span id='splash_slider_add_splash'>ADD a new Splash</span>
-            </div>";
-		}
-	}
+	}// end get_data()
 
 	function result(&$event, $param){
 		global $INFO;
 
 		if($event->data != $this->handle) return;
 		//DOKU_INC	
+		
+			if ( $INFO['perm'] != AUTH_ADMIN ) 
+			{
+				echo '<center><div  id="sb-slider" class="sb-slider" >';
+				$this->get_data();
+				echo "</div></center>";
+			}else
+			{
+				echo '<ul id="sortable">';
+				$this->get_data();
+				echo '</ul>';
+			}
 
-			echo '<center><div  id="sb-slider" class="sb-slider" >';
+if($INFO["perm"] ==AUTH_ADMIN )
+{   
+	echo "<div class='add_splash' >
+	<button id='add' >添加 </button>
+	<span id='splash_slider_add_splash'>ADD a new Splash</span>
+	</div>";
+}
 
-			$this->get_data();
 if ( $INFO['perm'] == AUTH_ADMIN )
 {
-			echo "</div></center>";
 	echo <<<EOT
 	<div id="add_splash_dialog" style="display:none; background-color:transparent;">
 		<div style="clear:both;" class="tips">

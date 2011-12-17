@@ -9,6 +9,39 @@ function validateURL(textval) {
 	else return true;
 }
 
+function explode (delimiter, string, limit) 
+{
+    var emptyArray = {
+        0: ''
+    };
+ 
+    // third argument is not required
+    if (arguments.length < 2 || typeof arguments[0] == 'undefined' || typeof arguments[1] == 'undefined') {
+        return null;
+    }
+ 
+    if (delimiter === '' || delimiter === false || delimiter === null) {
+        return false;
+    }
+ 
+    if (typeof delimiter == 'function' || typeof delimiter == 'object' || typeof string == 'function' || typeof string == 'object') {
+        return emptyArray;
+    }
+ 
+    if (delimiter === true) {
+        delimiter = '1';
+    }
+ 
+    if (!limit) {
+        return string.toString().split(delimiter.toString());
+    }
+    // support for limit argument
+    var splitted = string.toString().split(delimiter.toString());
+    var partA = splitted.splice(0, limit - 1);
+    var partB = splitted.join(delimiter.toString());
+    partA.push(partB);
+    return partA;
+}// func end
 
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
@@ -157,7 +190,7 @@ echo "</center></div>";
 	{
 		
 	});
-	
+/*	
 	var splash_pos = new Array();
 
 	$(".splash_div").each (function(index)
@@ -176,10 +209,37 @@ echo "</center></div>";
 			 
 		},
 		drag: function(event, ui) {
-			
-			$("#splash_slider_add_splash").html( splash_pos[0].top + " "+ splash_pos[1].top );
 		}
 	});
+
+*/	
+	var result0; var result;	
+	$( "#sortable" ).sortable({axis:"y",
+					start:function(event,ui) {
+						result0 = $(this).sortable('toArray');
+						
+					},
+	                update: function(event, ui) {
+                        result = $(this).sortable('toArray');
+//						alert( result.toString() );
+						
+						var t1 = explode(',', result0.toString() );
+						var t2 = explode(',', result.toString() );
+						$.ajax({
+							url:"mysql.php?switch=yes&a="+t1+"&b="+t2+"&tab=splash",
+							success: function(data){
+//								alert(data);
+  							},
+							error:function(jqXHR, textStatus, errorThrown)
+							{
+								
+							}
+						});
+                    }
+
+	});
+
+	$( "#sortable" ).disableSelection();
 
 
 	$(".splash_div").hover(function()
@@ -192,6 +252,7 @@ echo "</center></div>";
 
     $(".splash_div .close_img").click(function()
     {
+		var t = $(this);
         if (confirm("要删掉这个［首页图片］么？不要后悔哟"))
         {
             
@@ -202,7 +263,8 @@ echo "</center></div>";
                     if(data == "success")
                     {
                         alert("删除成功");
-                        location.reload(true);
+                        //location.reload(true); 
+						t.parent().fadeOut("fast");
                     }else
                     {
                         alert("删除失败，错误:"+data);
@@ -220,6 +282,7 @@ echo "</center></div>";
 	$(".album_container").hover (function()
 	{
 		$(this).find("#close_img").fadeIn("fast");
+		
 	},function()
 	{
 		$(this).find("#close_img").fadeOut("fast");
@@ -227,6 +290,8 @@ echo "</center></div>";
 
     $(".album_container .close_img").click(function()
     {
+		var t = $(this);
+		
         if (confirm("要删掉这个［相册］么？不要后悔哟"))
         {
             
@@ -236,8 +301,9 @@ echo "</center></div>";
                 {
                     if(data == "success")
                     {
-                        alert("删除成功");
-                        location.reload(true);
+                       alert("删除成功");
+//                        location.reload(true);
+						t.parent().fadeOut("fast");
                     }else
                     {
                         alert("删除失败，错误:"+data);
@@ -258,6 +324,8 @@ echo "</center></div>";
 
 	$(".pic_container .close_img").click(function()
 	{
+		var t = $(this);
+
         if (confirm("要删掉这个图片么？不要后悔哟"))
         {
             
@@ -268,7 +336,8 @@ echo "</center></div>";
                     if(data == "success")
                     {
                         alert("删除成功");
-                        location.reload(true);
+//                        location.reload(true);
+						t.parent().fadeOut("fast");
                     }else
                     {
                         alert("删除失败，错误:"+data);
@@ -290,6 +359,7 @@ echo "</center></div>";
 	
 	$(".video_thumb_container .close_img").click(function()
 	{
+		var t = $(this);
 		if (confirm("要删掉这个视频么？不要后悔哟"))
 		{
 			
@@ -300,7 +370,8 @@ echo "</center></div>";
 					if(data == "success")
 					{
 						alert("删除成功");
-						location.reload(true);
+//						location.reload(true);
+						t.parent().fadeOut("fast");
 					}else
 					{
 						alert("删除失败，错误:"+data);

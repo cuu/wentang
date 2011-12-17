@@ -77,7 +77,8 @@ div.dokuwiki label.block input.edit {
 div.dokuwiki fieldset {
   width: 300px;
   text-align: center;
-  border: 1px solid __border__;
+/*  border: 1px solid __border__; */
+	border-radius:3px;
   padding: 0.5em;
   margin: auto;
 }
@@ -105,7 +106,8 @@ html>body div.dokuwiki textarea.edit {
 div.dokuwiki input.edit,
 div.dokuwiki select.edit {
   font-size: 100%;
-  border: 1px solid __border__;
+	border:none;
+  border-bottom: 1px solid #888;
   color: __text__;
   background-color: __background__;
   vertical-align: middle;
