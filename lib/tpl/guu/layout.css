@@ -4,19 +4,40 @@
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author moraes <moraes@tipos.com.br>
  */
+html
+{
+	background:#2D3233;
+	padding:0px;
+	margin:0px;
+}
 body
 {
-	background:black !important;
+	background:#2D3233 !important;
 	color:#ccc;
+	margin:0px;
+	padding:0px;
+	top:0px;
 }
 /* -------------- top row --------------- */
+#container
+{
+	height:100%;
+}
 div.dokuwiki
 {
 	width:1024px;
+	background:#000;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+
+	box-shadow: 3px 3px 1px #000;
+
 }
 div.dokuwiki .header {
-  padding: 3px 0 0 2px;
+  padding: 0px 0 0 0px;
 	margin-bottom:16px;
+	margin-top:0px;
 }
 
 div.dokuwiki .pagename {
@@ -42,9 +63,20 @@ div.dokuwiki .logo {
   vertical-align: middle;
 
     border:1px solid #333;
+/*
     border-radius:4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
+*/
+background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#343434));
+
+background: -moz-linear-gradient(top, #505050, #343434);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434);
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434)";
+background: -ms-linear-gradient(top, #505050, #343434);
+background: -o-linear-gradient(top, #505050, #343434);
+
+
 
 }
 
@@ -107,14 +139,15 @@ div.menu a
 	height:auto;
 	line-height:29px;
 	text-decoration:none;
-	border-top:6px solid black;
+	border-top:2px solid #505050;
 }
 div.menu a:hover
 {
 	
 	color:white !important;
 	text-decoration:none;	
-	border-top:6px solid #176092;
+	/*border-top:6px solid #176092; */
+	border-top:2px solid #bd0002;
 }
 
 #menu1 { }
@@ -369,16 +402,25 @@ div
 /* for foot menu */ 
 .footerinc
 {
-    width:1024px;
     border:1px solid #262626;
     border-width: 1px 0;
-    padding: .5em 0;
+    padding: 0.5em 0;
     margin: 1.5em 0 2em;
-    zoom: 1;	
+    zoom: 1;
+	
+	background:#000;
+
+/*
+background: -webkit-gradient(linear, left top, left bottom, from(#585858), to(#383838));
+background: -moz-linear-gradient(top, #585858, #383838);
+filter: progid:DXImageTransform.Microsoft.gradient(endcolorstr=#FF383838, startcolorstr=#FF585858));
+background: -ms-linear-gradient(top, #585858, #383838);
+background: -o-linear-gradient(top, #585858, #383838);
+*/	
 }
-.footerinc a
+.footerinc ul a
 {
-	color:#808080;
+	color:#808080 !important;
 
 }
 .footerinc  ul.right {
@@ -395,7 +437,7 @@ div
 }
 .footerinc ul a:hover
 {
-	color:white;
+	color:white !important;
 }
 .piped {
     display: block;

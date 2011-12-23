@@ -11,6 +11,9 @@
 
 body {
   font: 80% "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+	margin:0px;
+	padding:0px;
+	margin-top:0px;
 }
 
 /* the document */
@@ -107,7 +110,7 @@ div.dokuwiki input.edit,
 div.dokuwiki select.edit {
   font-size: 100%;
 	border:none;
-  border-bottom: 1px solid #888;
+  border-bottom: 3px solid #888;
   color: __text__;
   background-color: __background__;
   vertical-align: middle;
@@ -419,7 +422,7 @@ div.dokuwiki ul {
   line-height: 1.5em;
   list-style-type: square;
   list-style-image: none;
-  margin: 0 0 1em 3.5em;
+/*  margin: 0 0 1em 3.5em; */
   color: __text_alt__;
 }
 

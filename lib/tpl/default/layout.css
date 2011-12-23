@@ -7,7 +7,7 @@
 
 html
 {
-	background:#fff;
+	background:#F5F5F5;
 	color:#000;
 }
 div
@@ -22,7 +22,7 @@ input,textarea
 }
 body
 {
-	background:#fff !important;
+	background:#F5F5F5 !important;
 	color:#000;
 }
 html > body div.dokuwiki textarea.edit 
@@ -41,6 +41,10 @@ html > body div.dokuwiki input.edit, html > body div.dokuwiki select.edit
 	background:#fff; color:#000;
 }
 /* -------------- top row --------------- */
+div.dokuwiki
+{
+	background:#fff;
+}
 div.dokuwiki .header {
   padding: 3px 0 0 2px;
 }
@@ -65,11 +69,13 @@ div.dokuwiki .logo {
   text-align: right;
   vertical-align: middle;
 
-	border:1px solid #999;
+	border-left:1px solid #999;
+	border-right:1px solid #999;
+	/*
     border-radius:4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-
+	*/
 	box-shadow: 3px 3px 1px #888;
 }
 
@@ -121,19 +127,19 @@ div.dokuwiki div.meta div.doc {
 
 div.menu a
 {
-	color:black !important;
+/*	color:black !important; */
 	display:block !important;
 	width:112px;
 /*	height:55px; */
 	height:auto;
 	line-height:29px;
-	border-top:6px solid white;
+	border-top:2px solid #505050;
 }
 div.menu a:hover
 {
-	color:white !important;
-	background:#888;	
-	border-top:6px solid red;
+/*	color:black !important; */
+/*	background:#fff;	*/
+	border-top:2px solid #505050;
 }
 
 
@@ -232,15 +238,22 @@ visibility: hidden;
 /* for footer menu */ 
 .footerinc
 {
-	width:1024px;
 	border:1px solid #e5e5e5;
 	border-width: 1px 0;
 	padding: .5em 0;
 	margin: 1.5em 0 2em;
 	zoom: 1;
+	background:#fff;
 
 }
-
+.footerinc ul a
+{
+	color:#808080 !important;
+}
+.footerinc ul a:hover
+{
+	color:black !important;
+}
 .footerinc  ul {
 	float: right;
 	padding-right: 10px;

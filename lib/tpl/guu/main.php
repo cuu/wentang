@@ -83,7 +83,7 @@ if (!defined('DOKU_INC')) die();
 
   <div class="stylehead" style="">
 
-    <div class="header" style="margin-top:10px; margin-bottom:20px;">
+    <div class="header" style="margin-top:0px; margin-bottom:20px;">
       <div class="logo"  style="color:red;width:100%;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
 
@@ -181,8 +181,9 @@ if (!defined('DOKU_INC')) die();
   </div>
 
 
-</div></center>
-<?php /*old includehook*/ @include(dirname(__FILE__).'/footer.html')?>
+<?php /*old includehook*/ @include(dirname(__FILE__).'/footer.php')?>
+</div>
+</center>
 
 <div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>
 </body>
