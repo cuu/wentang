@@ -46,6 +46,13 @@ function explode (delimiter, string, limit)
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
 
+$.fn.disable = function() {
+	$(this).attr("disabled","disabled");
+};
+$.fn.enable = function()
+{
+	$(this).removeAttr("disabled");
+}
 
 $("#container").fadeIn(3400);	
 $("#container").css("display","show");
@@ -60,16 +67,6 @@ $("#container").css("display","show");
 		return c*(t/=d)*t + b;
 	};	
 
-	$('#screen').scrollShow({
-		view:'#view',
-		content:'#images',
-		easing:'backout',
-		wrappers:'link,crop',
-		navigators:'a[id=left_scr],a[id=right_scr]',
-		navigationMode:'s',
-		circular:true,
-		start:0
-	});
 
 	$("#add_pic_dialog #make_it_default").change( function()
 	{
@@ -258,6 +255,9 @@ echo "</center></div>";
             
             $.ajax({
                 url:"mysql.php?delete=yes&tab=splash&pid="+$(this).attr('rel'),
+				beforeSend:function(xhr)
+				{
+				},
                 success:function(data)
                 {
                     if(data == "success")
@@ -352,9 +352,12 @@ echo "</center></div>";
 	{
 		
 		$(this).find("#close_img").fadeIn("fast");
+
+		$(this).find("#edit_img").fadeIn("fast");
 	},function()
 	{
 		$(this).find("#close_img").fadeOut("fast");
+		$(this).find("#edit_img").fadeOut("fast");
 	});
 	
 	$(".video_thumb_container .close_img").click(function()
@@ -383,9 +386,13 @@ echo "</center></div>";
 	
 	});
 
+	$(".video_thumb_container .edit_img").click(function()
+	{
+		alert("try to upload another file");
+	});
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
-	var button = $('#add_thumb #button1'), interval;
+	var button = $('#add_thumb #button1');
 	if( button.length == 0) 
 	{ 
 	}
@@ -397,28 +404,19 @@ echo "</center></div>";
 		onSubmit : function(file, ext){
 			// change button text, when user selects file			
 			button.text('Uploading');
-			this.disable();
-			// Uploding -> Uploading. -> Uploading...
-			interval = window.setInterval(function(){
-				var text = button.text();
-				if (text.length < 16){
-					button.text(text + '.');					
-				} else {
-					button.text('Uploading');				
-				}
-			}, 200);
+			button.disable();
+			$("#add_pic_dialog #ajaximg").show();
 		},
 		onComplete: function(file, response){
 			var info = $("#add_thumb  span");
 			button.text('Add');
-			window.clearInterval(interval);			
-			// enable upload button
-			this.enable();
+			$("#add_pic_dialog #ajaximg").hide();	
+			button.enable();
 			
 			info.text("Done! "+response);					
 			if( response.indexOf("success") != -1)
 			{
-				var real_file ="data/media/"+file;
+				var real_file = $.evalJSON( response  ).success;
 
 				$("#add_thumb img:last-child").remove();
 				$("#add_thumb").children().each( function() {
@@ -463,7 +461,7 @@ echo "</center></div>";
 	});
 	}
 	
-    var button2 = $('#big_image #button2'), interval2;
+    var button2 = $('#big_image #button2');
 	if(button2 .length != 0 )
 	{
     new AjaxUpload(button2,{
@@ -472,28 +470,21 @@ echo "</center></div>";
         name: 'qqfile',
         onSubmit : function(file, ext){
             button2.text('Uploading');
-            this.disable();
-            interval2 = window.setInterval(function(){
-                var text = button2.text();
-                if (text.length < 16){
-                   	button2.text(text + '.');                    
-                } else {
-                    button2.text('Uploading');               
-                }
-            }, 200);
+            button2.disable();
+			$("#add_pic_dialog #ajaximg").show();
+
         },
         onComplete: function(file, response){
             var info = $("#big_image > span");
             button2.text('Add');
-            window.clearInterval(interval2);         
-
-            this.enable();
+			$("#add_pic_dialog #ajaximg").hide();
+            button2.enable();
             
             info.text("Done! "+response);                   
             if( response.indexOf("success") != -1)
             {
 				//var real_file = "<?php echo DOKU_INC."data/media/"; ?>"+file;
-				var real_file ="data/media/"+file;
+				var real_file = $.evalJSON( response  ).success;
 				
 				$("#big_image img:last-child").remove();
 				$("#big_image").children().each( function() {
@@ -538,7 +529,7 @@ echo "</center></div>";
 
 
 
-	var button3 = $('#add_video_dialog  #add_video_small_thumb'), interval3;
+	var button3 = $('#add_video_dialog  #add_video_small_thumb');
 	if(button3.length != 0)
 	{
 	new AjaxUpload(button3,{
@@ -548,29 +539,21 @@ echo "</center></div>";
 		onSubmit : function(file, ext){
 			// change button text, when user selects file			
 			button3.text('Uploading');
-			this.disable();
-			// Uploding -> Uploading. -> Uploading...
-			interval3 = window.setInterval(function(){
-				var text = button3.text();
-				if (text.length < 16){
-					button3.text(text + '.');					
-				} else {
-					button3.text('Uploading');				
-				}
-			}, 200);
+			button3.disable();
+			$('#add_video_dialog #ajaximg').show();
 		},
 		onComplete: function(file, response){
 			var info = $("#add_video_thumb  span");
 			button3.text('Add');
-			window.clearInterval(interval3);			
 			// enable upload button
-			this.enable();
+			button3.enable();
+			$('#add_video_dialog #ajaximg').hide();
 			
 			info.text("Done! "+response);					
 			if( response.indexOf("success") != -1)
 			{
 
-				var real_file ="data/media/"+file;
+				var real_file =$.evalJSON( response  ).success;
 				
 				$("#add_video_thumb img:last-child").remove();
 				$("#add_video_thumb").children().each( function() {
@@ -586,7 +569,7 @@ echo "</center></div>";
 				});
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
 				$.ajax({
-					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&st="+real_file+"&tab=video",
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&st="+real_file+"&tab=video&parent=9999",
 					success: function(data){
 				//		alert(data);
 						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
@@ -617,7 +600,7 @@ echo "</center></div>";
 	}
 
 
-	var button4 = $('#add_video_dialog #add_video_thumb_pic'), interval4;
+	var button4 = $('#add_video_dialog #add_video_thumb_pic');
 	if(button4.length != 0)
 	{
 	new AjaxUpload(button4,{
@@ -627,29 +610,22 @@ echo "</center></div>";
 		onSubmit : function(file, ext){
 			// change button text, when user selects file			
 			button4.text('Uploading');
-			this.disable();
+			button4.disable();
 			// Uploding -> Uploading. -> Uploading...
-			interval4 = window.setInterval(function(){
-				var text = button4.text();
-				if (text.length < 16){
-					button4.text(text + '.');					
-				} else {
-					button4.text('Uploading');				
-				}
-			}, 200);
+			$("add_video_dialog #ajaximg").show();
 		},
 		onComplete: function(file, response){
 			var info = $("#add_video_dialog  #info");
 			button4.text('Add');
-			window.clearInterval(interval4);			
 			// enable upload button
-			this.enable();
+			$("add_video_dialog #ajaximg").hide();
+			button4.enable();
 			
 			info.text("Done! "+response);					
 			if( response.indexOf("success") != -1)
 			{
 
-				var real_file ="data/media/"+file;
+				var real_file = $.evalJSON( response  ).success;
 				
 				$("#add_big_video img:last-child").remove();
 				$("#add_big_video").children().each( function() {
@@ -670,7 +646,7 @@ echo "</center></div>";
                	$("#add_big_video img:last-child").draggable(); 
 
 				$.ajax({
-					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&thumb="+real_file+"&tab=video",
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&thumb="+real_file+"&tab=video&parent=9999",
 					success: function(data){
 				//		alert(data);
 						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
@@ -698,63 +674,35 @@ echo "</center></div>";
 		//alert("selector erorr");
 	}
 
+
 	
-	var button5 = $('#add_video_dialog #add_video'), interval5;
+	var button5 = $('#add_video_dialog #add_video');
 	if(button5.length != 0)
 	{
 	new AjaxUpload(button5,{
-		//action: 'upload-test.php', // I disabled uploads in this example for security reasons
 		action: 'php.php', 
 		name: 'qqfile',
 		onSubmit : function(file, ext){
 			// change button text, when user selects file			
 			button5.text('Uploading');
-			this.disable();
+			button5.disable();
 			// Uploding -> Uploading. -> Uploading...
-			interval5 = window.setInterval(function(){
-				var text = button5.text();
-				if (text.length < 16){
-					button5.text(text + '.');					
-				} else {
-					button5.text('Uploading');				
-				}
-			}, 200);
+			$('#add_video_dialog #ajaximg').show();
 		},
 		onComplete: function(file, response){
 			var info = $("#add_video_dialog  #info");
 			button5.text('Add');
-			window.clearInterval(interval5);			
+			$('#add_video_dialog #ajaximg').hide();
 			// enable upload button
-			this.enable();
+			button5.enable();
 			
 			info.text("Done! "+response );					
 			if( response.indexOf("success") != -1)
 			{
 
-				var real_file ="data/media/"+file;
-/*					
-				$("#add_big_video embed:last-child").remove();
-				$("#add_big_video").children().each( function() {
-					$(this).show();
-				});
-				
-                info.text("Done!");
-				info.fadeIn("slow");
-				info.fadeOut(3500);
-				
-				$("#add_big_video").children().each(function() {
-					$(this).hide();
-				});
-//				alert( $("#add_pic_dialog > #check").val() );	 -1
-				
-				$("#add_big_video").append('<embed type="application/x-shockwave-flash" src="player.swf?v1.3" id="f4Player" flashvars="video='+real_file+'"  allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000" height="270" width="480"><noembed>You need Adobe Flash Player to watch this video. &lt;br&gt; &lt;</noembed>');
-				
-
-					
-//               	$("#add_big_video embed:last-child").draggable(); 
-*/
+				var real_file = $.evalJSON( response  ).success;
 				$.ajax({
-					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+"&tab=video",
+					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+"&tab=video&parent=9999",
 					success: function(data){
 				//		alert(data);
 						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
@@ -764,14 +712,6 @@ echo "</center></div>";
 						}
 					}
 				});
-/*
-					$("#add_video_dialog #video_area").html('<embed type="application/x-shockwave-flash" src="http://127.0.0.1/doku/lib/tpl/guu/js/player.swf?v1.3" id="f4Player" flashvars="video='+real_file+'"  allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000" height="270" width="480">'+
-"<noembed>"+
-"You need Adobe Flash Player to watch this video. &lt;br&gt; "+
-'&lt;a href="http://get.adobe.com/flashplayer/"&gt;Download it from Adobe.&lt;/a&gt;'+
-'&lt;a href="http://gokercebeci.com/dev/f4player" title="flv player"&gt;flv player&lt;/a&gt;'+
-'</noembed>');
-*/
 				
 			}else
 			{
@@ -807,7 +747,7 @@ echo "</center></div>";
 					if( embedcode != undefined )
 					{
 						$.ajax({
-							url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+embedcode+"&thumb="+thumb_img+"&tab=video",
+							url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+embedcode+"&thumb="+thumb_img+"&tab=video&parent=9999",
 							success: function(data){
 								//alert(data);
 								if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
@@ -834,7 +774,7 @@ echo "</center></div>";
 	});
 
 
-    var button6 = $('#add_splash #add'), interval6;
+    var button6 = $('#add_splash #add');
     if( button6.length == 0) { }
     else
     {
@@ -844,28 +784,20 @@ echo "</center></div>";
         onSubmit : function(file, ext){
             // change button text, when user selects file           
             button6.text('Uploading');
-            this.disable();
-            // Uploding -> Uploading. -> Uploading...
-            interval6 = window.setInterval(function(){
-                var text = button6.text();
-                if (text.length < 16){
-                    button6.text(text + '.');                    
-                } else {
-                    button6.text('Uploading');               
-                }
-            }, 200);
+            button6.disable();
+			$("#add_splash_dialog #ajaximg").show();
         },
         onComplete: function(file, response){
             var info = $("#add_splash span");
             button6.text('Add');
-            window.clearInterval(interval6);         
-            // enable upload button
-            this.enable();
+			
+			$("#add_splash_dialog #ajaximg").hide();	
+            button6.enable();
             
             info.text("Done! "+response);                   
             if( response.indexOf("success") != -1)
             {
-                var real_file ="data/media/"+file;
+                var real_file = $.evalJSON( response  ).success;
 
                 $("#preview img:last-child").remove();
                 $("#preview").children().each( function() {
@@ -901,11 +833,26 @@ echo "</center></div>";
     });
     }
 	
+	$(".splash_div img").draggable();	 // I am not sure if this is a good idea
+
 	$("a[rel=group1]").fancybox({
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none',
 				'showNavArrows':'true'
 				});
+
+
+    $('#screen').scrollShow({
+        view:'#view',
+        content:'#images',
+        easing:'backout',
+        wrappers:'link,crop',
+        navigators:'a[id=left_scr],a[id=right_scr]',
+        navigationMode:'s',
+        circular:true,
+        start:0
+    });
+
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
 

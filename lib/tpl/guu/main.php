@@ -62,6 +62,8 @@ if (!defined('DOKU_INC')) die();
 		include_once "slicebox.php";
 	}
 	include_once "fancybox.php"; 
+
+	include_once "flowplayer.php";
 	
 	include_once "jquery.scrollshow.php";
 	
@@ -84,7 +86,10 @@ if (!defined('DOKU_INC')) die();
   <div class="stylehead" style="">
 
     <div class="header" style="margin-top:0px; margin-bottom:20px;">
-      <div class="logo"  style="color:red;width:100%;">
+		<div class='' style="margin-left:22px;float:left;background:none;">
+			<img src="lib/tpl/guu/images/wentang_logo.png" /> 
+		</div>
+      <div class="logo"  style="float:left;color:red;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
 
       </div>

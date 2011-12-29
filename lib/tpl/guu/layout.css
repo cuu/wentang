@@ -31,7 +31,7 @@ div.dokuwiki
 	padding-right:10px;
 	padding-bottom:10px;
 
-	box-shadow: 6px 6px 3px #111;
+	box-shadow: 0px 0px 10px 0px #111;
 
 }
 div.dokuwiki .header {
@@ -118,6 +118,7 @@ div.dokuwiki div.meta div.user {
 div.dokuwiki div.meta div.doc {
   text-align: right;
 	color:__background__;
+	display:none;
 }
 
 /****************** guu style ***************************/
@@ -178,7 +179,7 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 
 .add_thumb
 {
-	width:92px;
+	width:120px;
 	height:92px;
 /*	background:white url('images/add_bg_32.png') center no-repeat; */
 	background:white;
@@ -227,7 +228,7 @@ div
 .pic_grid
 {
 	width:980px;
-	height:600px;
+	min-height:600px;
 	border:1px solid #000;
 }
 #pic_grid_add_pic
@@ -236,8 +237,8 @@ div
 }
 .pic_grid .pic
 {
-	width:96px;
-	height:96px;
+	width:184px;
+	height:184px;
 	margin:9px;
 	border:none;
 	float:left;
@@ -279,8 +280,8 @@ div
 
 .pic_grid .add_pic
 {
-	width:94px;
-	height:94px;
+	width:182px;
+	height:182px;
 	margin:9px;
 	text-align:center;
 	border:2px dashed #ccc;
@@ -363,7 +364,7 @@ div
         margin:5px 5px;
         border:1px solid #222;
         float:left;    
-        width:100px !important;
+        width:120px !important;
         height:100px !important;
         background-color:#333;  
 		border-radius:4px;

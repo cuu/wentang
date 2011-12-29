@@ -1,4 +1,17 @@
 <?php
+
+function coded_get($str)
+{
+	$file = getFormValue($str);
+
+	$dbdir = "";
+	$ext = strrchr($file,'.');
+	$name = substr($file,0, -(strlen($ext)));
+		
+//	return $dbdir.base64_encode($name).$ext;
+	return $dbdir.$name.$ext;
+}
+
 include_once "function.php";
 
 //if ('cgi-fcgi' != php_sapi_name()) die();
@@ -7,9 +20,9 @@ if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 require_once(DOKU_INC.'inc/init.php');
 require_once(DOKU_INC.'inc/auth.php');
 require_once(DOKU_INC.'inc/common.php');
+
 $INFO = pageinfo();
 if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
-
 
 $sqlsrv = "127.0.0.1";
 $sqlusr = "root";
@@ -18,9 +31,10 @@ $sqldb  = "guu_wentang";
 
 $id          = getFormValue("id"    );
 
-$thumb       = getFormValue("thumb" );
-$data        = getFormValue("data"  );
-$small_thumb = getFormValue("st"    ); // small thumb 
+$thumb       = coded_get("thumb" );
+$data        = coded_get("data"  );
+
+$small_thumb = coded_get("st"    ); // small thumb 
 
 $table		 = getFormValue("tab"   );
 
@@ -92,6 +106,10 @@ $sql = "";
 
 	if(strcmp($delete,"yes") == 0 )
 	{
+		if($table == "" || $pid == "")
+		{
+			die("DEL input data not correct");
+		}
 		$sql = "delete  from ".$table." where pid=".$pid;
 		run_sql($sql);
 		die("success");	

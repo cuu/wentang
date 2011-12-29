@@ -96,6 +96,7 @@ if ( $INFO['perm'] == AUTH_ADMIN )
 		<div  id="preview" style="width:480px;height:320px;overflow:hidden;" > </div>
 
 		<input type="hidden" id="check" value="-1" />
+		<img src = "lib/tpl/guu/images/ajax-loader.gif" id="ajaximg"  style=" margin-right:20px;display:none;" />
 		<button id="done" >Done</button>
 	</div>
 	

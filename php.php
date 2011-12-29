@@ -145,9 +145,11 @@ class qqFileUploader {
                 $filename .= rand(10, 99);
             }
         }
-        
-        if ($this->file->save($uploadDirectory . $filename . '.' . $ext)){
-            return array('success'=> ($uploadDirectory . $filename . '.' . $ext) );
+       	$filename = base64_encode( $filename);
+ 		$filename = $filename.'.'.$ext;
+
+        if ($this->file->save($uploadDirectory . $filename )){
+            return array('success'=> ($uploadDirectory . $filename ) );
         } else {
             return array('error'=> 'Could not save uploaded file.' .
                 'The upload was cancelled, or server error encountered');
@@ -159,7 +161,7 @@ class qqFileUploader {
 // list of valid extensions, ex. array("jpeg", "xml", "bmp")
 $allowedExtensions = array();
 // max file size in bytes
-$sizeLimit = 10 * 1024 * 1024;
+$sizeLimit = 150 * 1024 * 1024;
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload('data/media/');

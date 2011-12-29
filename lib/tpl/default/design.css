@@ -192,9 +192,8 @@ div.dokuwiki form#dw__editform div.license {
 
 div.dokuwiki input.button,
 div.dokuwiki button.button {
-  border: 1px solid #c1c1c1;
+  border: 1px solid #fff;
   color: #000;
-  background-color: #fff;
   vertical-align: middle;
   text-decoration: none;
   font-size: 100%;

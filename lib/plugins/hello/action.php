@@ -99,6 +99,7 @@ echo <<<EOT
     <br /><br />
 	<input id='make_it_default' type="checkbox"  />Make it be the default front page of this album
     <div id="upload" style="float:right";>
+		<img src="lib/tpl/guu/images/ajax-loader.gif" id="ajaximg" style="margin-right:20px;display:none;" />
         <input type="button" value="Done" size=15 style="width:100px;height:25px;line-height:25px;" />
         <br /> <br />
     </div>
