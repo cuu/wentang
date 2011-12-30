@@ -1,15 +1,15 @@
 <?php
+
+
 if(!defined('DOKU_INC')) die();
+
+require_once( DOKU_INC."function.php");
 
 class action_plugin_hello extends DokuWiki_Action_Plugin {
 	
 	public $handle="hello";
-	public $db = "guu_wentang";
 	public $table1 = "pic"; // for album
 	public $table2 = "pics";  // for detail
-	public $sqlsrv = "127.0.0.1";
-	public $sqlusr ="root";
-	public $sqlpas = "";
 	
 	function register(&$controller) {	
 		$controller->register_hook('ACTION_ACT_PREPROCESS','BEFORE', $this, 'preprocess');
@@ -22,18 +22,12 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 		$event->preventDefault();
 		return true;
 	}
-	function connect_mysql()
-	{
-		$link = mysql_connect($this->sqlsrv, $this->sqlusr, $this->sqlpas) or die('Could not connect: '.mysql_error());
-		mysql_select_db($this->db) or die('Could not select database '.$this->db);
-		return $link;
-	}
 
 	function get_data( $albumid)
 	{
 		$sql = "select * from ".$this->table2." where parent_id=".$albumid;
 
-		$link = $this->connect_mysql();
+		$link = connect_mysql();
 
 		$result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 
@@ -49,7 +43,7 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 	{
 		global $INFO;
 		$sql = "select * from ".$this->table1;
-		$link = $this->connect_mysql();
+		$link = connect_mysql();
 		$result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
         while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0 pid 1 thumb 2 data
         {

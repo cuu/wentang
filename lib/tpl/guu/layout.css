@@ -30,7 +30,7 @@ div.dokuwiki
 	padding-left:10px;
 	padding-right:10px;
 	padding-bottom:10px;
-
+	
 	box-shadow: 0px 0px 10px 0px #111;
 
 }
@@ -135,7 +135,7 @@ div.menu a
 	text-align:center;
 	color:#dbdbdb !important;
 	display:block !important;
-	width:112px;
+	width:113px;
 /*	height:55px; */
 	height:auto;
 	line-height:29px;
@@ -460,3 +460,25 @@ background: -o-linear-gradient(top, #585858, #383838);
 	list-style:none;
 }
 
+
+.bb
+{
+	height:60px;
+	width:5px;
+	float:left;
+background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#343434));
+
+background: -moz-linear-gradient(top, #505050, #343434);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434);
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434)";
+background: -ms-linear-gradient(top, #505050, #343434);
+background: -o-linear-gradient(top, #505050, #343434);
+border:1px solid #333;
+
+}
+
+
+div.dokuwiki div.page 
+{
+	min-height:480px;
+}

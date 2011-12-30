@@ -1,14 +1,23 @@
 <?php
 if(!defined('DOKU_INC')) die();
+require_once( DOKU_INC."function.php");
+
 class action_plugin_video extends DokuWiki_Action_Plugin {
 	
 	public $handle="video";
-    public $db = "guu_wentang";
     public $table = "video";
 
-	public $sqlserver ="127.0.0.1";
-	public $sqluser="root";
-	public $sqlpass="";
+
+        function getInfo(){
+            return array(
+                'author' => 'dexter kidd',
+                'email'  => 'dexter@dphys.us',
+                'date'   => '2011-12-31',
+                'name'   => 'Video page plugin',
+                'desc'   => 'Put videos to show ',
+                'url'    => 'http://dphys.us/',
+            );  
+        } 
 
 	function register(&$controller) {	
 		$controller->register_hook('ACTION_ACT_PREPROCESS','BEFORE', $this, 'preprocess');
@@ -20,14 +29,6 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 		// ok - we handle the action
 		$event->preventDefault();
 		return true;
-	}
-	function connect_mysql()
-	{
-        $link = mysql_connect($this->sqlserver, $this->sqluser, $this->sqlpass) or die('Could not connect:    
-' . mysql_error());        
-		mysql_select_db($this->db) or die('Could not select database '.$this->db);
-		
-		return $link;
 	}
 	function echo_video_swf($file)
 	{
@@ -49,7 +50,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	{
         $sql = "select * from ".$this->table."  ORDER BY pid LIMIT 1";
 
-        $link = $this->connect_mysql();
+        $link = connect_mysql();
 
         $result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 
@@ -76,7 +77,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	{
         $sql = "select * from ".$this->table." where pid=".$pid;
 
-        $link = $this->connect_mysql();
+        $link = connect_mysql();
         $result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 
        	while ($line = mysql_fetch_array($result, MYSQL_NUM))  //0 pid 1 thumb 2 data
@@ -101,7 +102,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	{
 		//get data from  mysql databases
         $sql = "select * from ".$this->table;
-        $link = $this->connect_mysql();
+        $link = connect_mysql();
         $result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 		
 		if ( mysql_num_rows($result) == 0)
@@ -122,7 +123,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 				echo '
 				<li class="video_thumb_container">
 			<!--	<div class="video_small_thumb"> -->
-				<a class="to_show_video" href="?id=video&do=video&pid='.$line[0].'"><img src="'.$line[3].'" alt="No img" /></a>
+				<a class="to_show_video" href="?id=video&do=video&pid='.$line[0].'"><img src="'.$line[1].'" alt="No img" /></a>
 <!--			</div> -->
 				<a  href="#" rel="'.$line[0].'" class="close_img" id="close_img" ></a>
 				<a  href="#" rel="'.$line[0].'" class="edit_img" id="edit_img" ></a>
@@ -178,9 +179,25 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 
 echo <<<EOF
 <div id="add_video_dialog" style="display:none; background-color:transparent;">
-	<input type="button" value="upload video" id="add_video" style="height:25px;width:120px;" /> 
+
+    <div id="add_video" style="float:left;">   
+        <noscript>    
+            <p>Please enable JavaScript to use file uploader.</p>
+            <!-- or put a simple form for upload here -->
+        </noscript>    
+    </div>
+
 	<!-- <input type="button" value="upload video thumb" id="add_video_thumb_pic" style="height:25px; width:160px; margin-left:15px;" /> -->
-	<input type="button" value="upload small thumb" id="add_video_small_thumb" style="height:25px; width:160px; margin-left:15px;" />
+	
+    <div id="add_video_small_thumb" style="float:left;">
+           <noscript> 
+			<p>Please enable JavaScript to use file uploader.</p>
+			<!-- or put a simple form for upload here -->        
+		 </noscript>         
+    </div>
+
+<!--	<input type="button" value="upload small thumb" id="add_video_small_thumb" style="height:25px; width:160px; margin-left:15px;" /> -->
+	<div style="clear:both;"></div>
 
 	<br />
 	<span id='info'></span>	

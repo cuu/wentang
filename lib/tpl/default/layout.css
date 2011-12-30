@@ -320,3 +320,31 @@ visibility: hidden;
 {
 	display:none;
 }
+
+.outkey 
+{
+	background-color: white;
+}
+
+#config__manager fieldset 
+{
+	color:black;
+}
+
+
+#config__manager td.label span.outkey {
+background-color: white;
+}
+
+#_display, #_anti_spam,#_editing ,#_links,#_advanced ,#_network
+{
+	display:none !important;
+}
+
+#_authentication
+{
+	display:none !important;
+}
+
+
+

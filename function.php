@@ -188,7 +188,18 @@ function check_root()
   }
 }
 
+function connect_mysql()
+{
+$sqlsrv = "127.0.0.1";
+$sqlusr = "root";
+$sqlpas = ""; 
+$sqldb  = "guu_wentang";
+ 
+    $link = mysql_connect ( $sqlsrv, $sqlusr,$sqlpas) or die("mysql connect error".mysql_error() );
+    mysql_select_db($sqldb,$link);
 
+    return $link;
+}
 
 
 ?>

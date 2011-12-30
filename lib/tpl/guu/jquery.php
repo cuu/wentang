@@ -46,6 +46,7 @@ function explode (delimiter, string, limit)
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
 
+
 $.fn.disable = function() {
 	$(this).attr("disabled","disabled");
 };
@@ -462,7 +463,7 @@ echo "</center></div>";
 	}
 	
     var button2 = $('#big_image #button2');
-	if(button2 .length != 0 )
+	if(button2.length != 0 )
 	{
     new AjaxUpload(button2,{
         //action: 'upload-test.php',
@@ -527,78 +528,61 @@ echo "</center></div>";
     });
 	}
 
-
-
-	var button3 = $('#add_video_dialog  #add_video_small_thumb');
-	if(button3.length != 0)
-	{
-	new AjaxUpload(button3,{
-		//action: 'upload-test.php', // I disabled uploads in this example for security reasons
-		action: 'php.php', 
-		name: 'qqfile',
-		onSubmit : function(file, ext){
-			// change button text, when user selects file			
-			button3.text('Uploading');
-			button3.disable();
-			$('#add_video_dialog #ajaximg').show();
+	//add video small thumb
+	var uploader4 = new qq.FileUploader({
+		element: $('#add_video_dialog #add_video_small_thumb')[0],
+		action: 'php.php', name: 'qqfile',debug: true,
+		text:"Upload a  video thumb image ",
+		onSubmit: function(id, fileName){
+			$("#add_video_small_thumb .qq-upload-list").fadeIn("fast");
 		},
-		onComplete: function(file, response){
-			var info = $("#add_video_thumb  span");
-			button3.text('Add');
-			// enable upload button
-			button3.enable();
-			$('#add_video_dialog #ajaximg').hide();
-			
-			info.text("Done! "+response);					
-			if( response.indexOf("success") != -1)
-			{
-
-				var real_file =$.evalJSON( response  ).success;
-				
-				$("#add_video_thumb img:last-child").remove();
-				$("#add_video_thumb").children().each( function() {
+		onComplete: function(id, fileName, response)
+		{	
+            var info = $("#add_video_dialog  #info");
+            info.text("Done! "+response.success );                  
+            if( response.success )
+            {
+                var real_file =  response.success;
+				$("#add_big_video img:last-child").remove();
+				$("#add_big_video").children().each( function() {
 					$(this).show();
 				});
-				
                 info.text("Done!");
 				info.fadeIn("slow");
 				info.fadeOut(3500);
 				
-				$("#add_video_thumb").children().each(function() {
+				$("#add_big_video").children().each(function() {
 					$(this).hide();
 				});
 //				alert( $("#add_pic_dialog > #check").val() );	 -1
-				$.ajax({
-					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&st="+real_file+"&tab=video&parent=9999",
-					success: function(data){
-				//		alert(data);
-						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
-						{
-							$("#add_video_dialog #check").val( data );
-						//	alert( $("#add_pic_dialog #check").val() );
-						}
-					}
-				});
-	
-				$("#add_video_thumb").append("<img src='"+real_file+"' />")
+				
+				$("#add_big_video").append("<img src='"+real_file+"' />")
 					
-//               	$("#add_video_thumb img:last-child").draggable(); 
-				
-				
-			}else
-			{
-				info.text("Error!");
-				info.fadeIn("slow");
-				info.fadeOut(3500);
-			}
-		
-		}
-	});
-	}else 
-	{
-		//alert("selector erorr");
-	}
+               	$("#add_big_video img:last-child").draggable(); 
 
+                $.ajax({
+                    url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&thumb="+real_file+"&tab=video&parent=9999",
+                    success: function(data){
+                //      alert(data);
+                        if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+                        {
+                            $("#add_video_dialog #check").val( data );
+                        //  alert( $("#add_pic_dialog #check").val() );
+                        }
+						
+						$("#add_video_small_thumb .qq-upload-list").fadeOut(3500)
+
+                    }
+                }); 
+            }else
+            {
+                info.text("Error!" + response.success);
+            //  info.fadeIn("slow");  info.fadeOut(3500);
+            }	
+		}
+	}); 
+ 
+	//---------------------
 
 	var button4 = $('#add_video_dialog #add_video_thumb_pic');
 	if(button4.length != 0)
@@ -675,57 +659,42 @@ echo "</center></div>";
 	}
 
 
-	
-	var button5 = $('#add_video_dialog #add_video');
-	if(button5.length != 0)
-	{
-	new AjaxUpload(button5,{
-		action: 'php.php', 
-		name: 'qqfile',
-		onSubmit : function(file, ext){
-			// change button text, when user selects file			
-			button5.text('Uploading');
-			button5.disable();
-			// Uploding -> Uploading. -> Uploading...
-			$('#add_video_dialog #ajaximg').show();
+	var uploader5 = new qq.FileUploader({
+		element: $('#add_video_dialog #add_video')[0],
+		action: 'php.php', name: 'qqfile',debug: true,
+		text:"Upload a  video",
+		onSubmit: function(id, fileName){
+			$("#add_video .qq-upload-list").fadeIn("fast");
 		},
-		onComplete: function(file, response){
-			var info = $("#add_video_dialog  #info");
-			button5.text('Add');
-			$('#add_video_dialog #ajaximg').hide();
-			// enable upload button
-			button5.enable();
-			
-			info.text("Done! "+response );					
-			if( response.indexOf("success") != -1)
-			{
+		onComplete: function(id, fileName, response)
+		{	
+            var info = $("#add_video_dialog  #info");
+            info.text("Done! "+response.success );                  
+            if( response.success )
+            {
+                var real_file =  response.success;
+                $.ajax({
+                    url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+                "&tab=video&parent=9999",
+                    success: function(data){
+                //      alert(data);
+                        if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
+                        {
+                            $("#add_video_dialog #check").val( data );
+                        //  alert( $("#add_pic_dialog #check").val() );
+                        }
+						
+						$("#add_video .qq-upload-list").fadeOut(3500)
 
-				var real_file = $.evalJSON( response  ).success;
-				$.ajax({
-					url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+"&tab=video&parent=9999",
-					success: function(data){
-				//		alert(data);
-						if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
-						{
-							$("#add_video_dialog #check").val( data );
-						//	alert( $("#add_pic_dialog #check").val() );
-						}
-					}
-				});
-				
-			}else
-			{
-				info.text("Error!" + response);
-			//	info.fadeIn("slow");
-			//	info.fadeOut(3500);
-			}
-		
+                    }
+                }); 
+            }else
+            {
+                info.text("Error!" + response.success);
+            //  info.fadeIn("slow");  info.fadeOut(3500);
+            }	
 		}
-	});
-	}else 
-	{
-		//alert("selector erorr");
-	}
+	}); 
+
 
 	$("#add_video_dialog #url_bar").change(function()
 	{

@@ -86,8 +86,11 @@ if (!defined('DOKU_INC')) die();
   <div class="stylehead" style="">
 
     <div class="header" style="margin-top:0px; margin-bottom:20px;">
-		<div class='' style="margin-left:22px;float:left;background:none;">
-			<img src="lib/tpl/guu/images/wentang_logo.png" /> 
+		<div class='bb'>
+			
+		</div>
+		<div class='' style="height:61px;width:100px; text-align:center; line-height:60px; margin-left:0px;float:left;background:none; ">
+			<img src="lib/tpl/guu/images/wentang_logo.png" style="vertical-align:middle;margin-top:7px;" /> 
 		</div>
       <div class="logo"  style="float:left;color:red;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>

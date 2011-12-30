@@ -12,7 +12,6 @@ function coded_get($str)
 	return $dbdir.$name.$ext;
 }
 
-include_once "function.php";
 
 //if ('cgi-fcgi' != php_sapi_name()) die();
 
@@ -21,13 +20,12 @@ require_once(DOKU_INC.'inc/init.php');
 require_once(DOKU_INC.'inc/auth.php');
 require_once(DOKU_INC.'inc/common.php');
 
+
+include_once "function.php";
+
 $INFO = pageinfo();
 if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
 
-$sqlsrv = "127.0.0.1";
-$sqlusr = "root";
-$sqlpas = "";
-$sqldb  = "guu_wentang";
 
 $id          = getFormValue("id"    );
 
@@ -50,19 +48,10 @@ $switch 	 = getFormValue("switch");
 $a 			 = getFormValue("a");
 $b			 = getFormValue("b");
 
-function connect_mysql()
-{
-	global $id, $sqlsrv,$sqlusr,$sqlpass,$sqldb, $table; 
-	$link = mysql_connect ( $sqlsrv, $sqlusr,$sqlpas) or die("mysql connect error".mysql_error() );
-	mysql_select_db($sqldb,$link);
-
-	return $link;
-}
 function run_sql($sql)
 {
 	global $id, $sqlsrv,$sqlusr,$sqlpass,$sqldb, $table;
-	$link = mysql_connect ( $sqlsrv, $sqlusr,$sqlpas) or die("mysql connect error".mysql_error() );
-	mysql_select_db($sqldb,$link);
+	$link = connect_mysql();
     if($sql != "") 
     {   
         $result = mysql_query($sql);

@@ -30,8 +30,7 @@
 </div> <!-- end footerinc -->
     <div class="piped right" style="height:100%;width:100%;">
     <span style="font-size:10px;text-align:center;" >
-            本网站所有内容版权归<span style="color:#B72E00;">玟唐传播</span>所有 ©2011 &nbsp;<br /> 
-            Copyright &copy 2011 All rights reserverd by Wentang Media Inc </span>  
+            Copyright &copy<?php echo date("Y"); ?>  Wentang Media Inc <span style="color:#B72E00;">玟唐传播</span> 保留所有权利。 </span>
     </div>
 	<div style="clear:both;"></div> 
 <!-- </center> -->
