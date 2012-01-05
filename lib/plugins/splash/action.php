@@ -1,6 +1,8 @@
 <?php
 if(!defined('DOKU_INC')) die();
 
+require_once( DOKU_INC."function.php");
+
 class action_plugin_splash extends DokuWiki_Action_Plugin {
 	
 	public $handle="splash";
@@ -21,19 +23,12 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 		$event->preventDefault();
 		return true;
 	}
-	function connect_mysql()
-	{
-        $link = mysql_connect($this->sqlsrv, $this->sqlusr, $this->sqlpas) or die('Could not connect: ' . mysql_error());
-		mysql_select_db($this->db) or die('Could not select database '.$this->db);
-
-		return $link;
-	}
 	function get_data()
 	{
 		global $INFO;
 		$sql = "select * from ".$this->table;
 
-		$link = $this->connect_mysql();
+		$link = connect_mysql();
 		$result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 
 		while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0:pid 1:thumb 2:data
@@ -93,7 +88,7 @@ if ( $INFO['perm'] == AUTH_ADMIN )
 			<br /> <br />
 			<span>Size: ?x? </span>
 		</div>
-		<div  id="preview" style="width:480px;height:320px;overflow:hidden;" > </div>
+		<div  id="preview" style="width:720px;height:320px;overflow:hidden;" > </div>
 
 		<input type="hidden" id="check" value="-1" />
 		<img src = "lib/tpl/guu/images/ajax-loader.gif" id="ajaximg"  style=" margin-right:20px;display:none;" />

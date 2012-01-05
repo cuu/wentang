@@ -24,7 +24,7 @@ $conf['allowdebug']  = 0;                 //allow debug output, enable if needed
 /* Display Options */
 
 $conf['start']       = 'start';           //name of start page
-$conf['title']       = 'DokuWiki';        //what to show in the title
+$conf['title']       = 'Wentang';        //what to show in the title
 $conf['template']    = 'default';         //see lib/tpl directory
 $conf['license']     = 'cc-by-nc-sa';     //see conf/license.php
 $conf['fullpath']    = 0;                 //show full path of the document or relative to datadir only? 0|1
@@ -32,8 +32,8 @@ $conf['recent']      = 20;                //how many entries to show in recent
 $conf['breadcrumbs'] = 10;                //how many recent visited pages to show
 $conf['youarehere']  = 0;                 //show "You are here" navigation? 0|1
 $conf['typography']  = 1;                 //smartquote conversion 0=off, 1=doublequotes, 2=all quotes
-$conf['htmlok']      = 0;                 //may raw HTML be embedded? This may break layout and XHTML validity 0|1
-$conf['phpok']       = 0;                 //may PHP code be embedded? Never do this on the internet! 0|1
+$conf['htmlok']      = 1;                 //may raw HTML be embedded? This may break layout and XHTML validity 0|1
+$conf['phpok']       = 1;                 //may PHP code be embedded? Never do this on the internet! 0|1
 $conf['dformat']     = '%Y/%m/%d %H:%M';  //dateformat accepted by PHPs strftime() function
 $conf['signature']   = ' --- //[[@MAIL@|@NAME@]] @DATE@//'; //signature see wiki:config for details
 $conf['toptoclevel'] = 1;                 //Level starting with and below to include in AutoTOC (max. 5)

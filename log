@@ -1,3 +1,9 @@
 
 http://127.0.0.1/doku/doku.php?do=admin&id=start
 
+上传之后
+设php.ini
+设data/media的权限 chmod 777
+
+mysql 数据库 ,functions.php
+

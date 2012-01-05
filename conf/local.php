@@ -15,4 +15,8 @@ $conf['superuser'] = '@admin';
 $conf['gdlib'] = '0';
 $conf['updatecheck'] = 0;
 
+$conf['htmlok']      = 1;//may raw HTML be embedded? This may break layout and XHTML validity 0|1
+
+$conf['phpok']       = 1;  
+
 // end auto-generated content

@@ -5,6 +5,10 @@ require_once(DOKU_INC.'inc/init.php');
 
 require_once(DOKU_INC.'inc/common.php');
 $INFO=pageinfo();
+
+$INFO = pageinfo();
+if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
+
 /**
  * Handle file uploads via XMLHttpRequest
  */

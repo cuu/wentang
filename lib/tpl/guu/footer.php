@@ -28,9 +28,13 @@
 	</ul>
 	<div style="clear:both;"></div>
 </div> <!-- end footerinc -->
-    <div class="piped right" style="height:100%;width:100%;">
+    <div class="piped right" style="line-height:20px;height:100%;width:100%;">
     <span style="font-size:10px;text-align:center;" >
-            Copyright &copy<?php echo date("Y"); ?>  Wentang Media Inc <span style="color:#B72E00;">玟唐传播</span> 保留所有权利。 </span>
+            Copyright &copy<?php echo date("Y"); ?>  Wentang Media Inc <br />
+			<span style="margin-left:5px;font-size:12px;color:#fff;;">玟唐传播</span> 保留所有权利。 </span> <br />
+			<span style="font-size:11px;"><?php echo date("D, M j, Y"); ?></span>
+			<br />
+			<img src="lib/tpl/guu/images/wentang_small.png" />
     </div>
 	<div style="clear:both;"></div> 
 <!-- </center> -->

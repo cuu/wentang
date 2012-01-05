@@ -35,14 +35,22 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 
 		echo '
         <a  
-             href="http://127.0.0.1/doku/'.$file.'" 
-             style="display:block;width:520px;height:330px"  
+             href="'.$file.'" 
+             style="display:block;width:960px;height:542px"  
              id="player"> 
         </a> 
     
         <!-- this will install flowplayer inside previous A- tag. -->
         <script>
-            flowplayer("player", "lib/tpl/guu/js/flowplayer-3.2.7.swf");
+            flowplayer("player", "lib/tpl/guu/js/flowplayer-3.2.7.swf",
+			{
+				clip: {
+					autoPlay: false,
+					autoBuffering: true
+				}
+			}
+			);
+			
         </script>
 		';
 	}

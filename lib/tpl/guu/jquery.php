@@ -389,7 +389,7 @@ echo "</center></div>";
 
 	$(".video_thumb_container .edit_img").click(function()
 	{
-		alert("try to upload another file");
+		alert("try to upload another file replace this thumb,soon will be!");
 	});
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
@@ -528,6 +528,9 @@ echo "</center></div>";
     });
 	}
 
+	var btns4 = $('#add_video_dialog #add_video_small_thumb');
+	if( btns4.length > 0)
+	{
 	//add video small thumb
 	var uploader4 = new qq.FileUploader({
 		element: $('#add_video_dialog #add_video_small_thumb')[0],
@@ -581,7 +584,7 @@ echo "</center></div>";
             }	
 		}
 	}); 
- 
+ 	}
 	//---------------------
 
 	var button4 = $('#add_video_dialog #add_video_thumb_pic');
@@ -658,7 +661,9 @@ echo "</center></div>";
 		//alert("selector erorr");
 	}
 
-
+	var btns5 = $('#add_video_dialog #add_video');
+	if( btns5.length > 0)
+	{
 	var uploader5 = new qq.FileUploader({
 		element: $('#add_video_dialog #add_video')[0],
 		action: 'php.php', name: 'qqfile',debug: true,
@@ -695,6 +700,7 @@ echo "</center></div>";
 		}
 	}); 
 
+	}
 
 	$("#add_video_dialog #url_bar").change(function()
 	{
@@ -744,7 +750,7 @@ echo "</center></div>";
 
 
     var button6 = $('#add_splash #add');
-    if( button6.length == 0) { }
+    if( button6.length == 0) {  }
     else
     {
     new AjaxUpload(button6,{
@@ -794,9 +800,9 @@ echo "</center></div>";
 				$("#preview img:last-child").draggable();  
             }else
             {
-                info.text("Error!");
+                info.text("Error! " + response);
                 info.fadeIn("slow");
-                info.fadeOut(3500);
+                info.fadeOut(6500);
             } 
         }
     });

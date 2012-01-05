@@ -21,6 +21,7 @@ if (!defined('DOKU_INC')) die();
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Author" content="Guu" />
   <title>
     <?php tpl_pagetitle()?>
     [<?php echo strip_tags($conf['title'])?>]
@@ -89,8 +90,8 @@ if (!defined('DOKU_INC')) die();
 		<div class='bb'>
 			
 		</div>
-		<div class='' style="height:61px;width:100px; text-align:center; line-height:60px; margin-left:0px;float:left;background:none; ">
-			<img src="lib/tpl/guu/images/wentang_logo.png" style="vertical-align:middle;margin-top:7px;" /> 
+		<div class='logo_noball' style="height:60px;width:100px; text-align:center; line-height:60px; margin-left:0px;float:left; ">
+			<img src="lib/tpl/guu/images/wentang_logo_noball.png" style="vertical-align:middle;margin-top:7px;" /> 
 		</div>
       <div class="logo"  style="float:left;color:red;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>

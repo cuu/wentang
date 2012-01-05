@@ -147,7 +147,7 @@ div.menu a
 div.menu a:hover
 {
 	color:black !important; 
-/*	background:#fff;	*/
+	background:#fff;
 /*	border-top:2px solid #505050; */
 }
 
@@ -312,10 +312,11 @@ visibility: hidden;
 }
 
     #screen .jq-ss-crop{
-        border:1px solid #ffc;
+        border:1px solid black;
         background-color:#ccc;  
     } 
 
+/* try to hide some doku wiki's buttons  */
 #bar__topleft
 {
 	display:none;
@@ -336,6 +337,7 @@ visibility: hidden;
 background-color: white;
 }
 
+/* 在管理中，多余的定制选项 */
 #_display, #_anti_spam,#_editing ,#_links,#_advanced ,#_network
 {
 	display:none !important;
@@ -346,5 +348,13 @@ background-color: white;
 	display:none !important;
 }
 
+form.btn_revs  /* 修订记录 */
+{
+	display:none !important;
+}
 
-
+.bb /*在管理界面中，是无背景的,顶部logo边上的div*/
+{
+	background:none;
+	border:1px solid white;
+}

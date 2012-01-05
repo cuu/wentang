@@ -18,9 +18,9 @@ body {
 
 /* the document */
 div.dokuwiki div.page {
-  margin: 4px 0px;
+/*  margin: 4px 0px; */
   text-align: justify;
-	padding-left:18px;
+/*	padding-left:18px; */
 }
 
 div.dokuwiki table {
