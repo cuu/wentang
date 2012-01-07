@@ -387,10 +387,52 @@ echo "</center></div>";
 	
 	});
 
-	$(".video_thumb_container .edit_img").click(function()
+	var edit_a = $('.video_thumb_container .edit_img');
+	if( edit_a.length > 0)
 	{
-		alert("try to upload another file replace this thumb,soon will be!");
-	});
+		$(".video_thumb_container .edit_img").each(function() 
+		{
+			var this_edit = $(this);
+			new AjaxUpload( $(this),{
+		        action: 'php.php', 
+        		name: 'qqfile',
+		        onSubmit : function(file, ext){
+					$("#video_thumb_upload_progress_bar").show("fast");
+				},
+				onComplete: function(file, response)
+				{
+					if( response.indexOf("success") != -1)
+					{
+						var real_file = $.evalJSON( response ).success;
+						$.ajax({
+							url: "mysql.php?id="+this_edit.attr("rel")+"&thumb="+real_file+"&tab=video&parent=9999",
+							success:function(data)
+							{
+							//	alert( this_edit.attr("rel") +" " + data);	
+								this_edit.parent().find("div").children().attr("src", real_file);
+							}
+						});	
+					}else { alert (response); }
+					
+					$("#video_thumb_upload_progress_bar").hide("slow");
+				}
+
+				});
+
+		});	
+		
+		/*
+		$(".video_thumb_container .edit_img").click(function()
+		{
+			
+			var edit = $(this);		
+			edit.ShowBubblePopup();
+			//edit.FreezeBubblePopup(); then remove it RemoveBubblePopup()
+			
+		});
+		*/
+		
+	}
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
 	var button = $('#add_thumb #button1');
@@ -816,18 +858,20 @@ echo "</center></div>";
 				'showNavArrows':'true'
 				});
 
-
-    $('#screen').scrollShow({
-        view:'#view',
-        content:'#images',
-        easing:'backout',
-        wrappers:'link,crop',
-        navigators:'a[id=left_scr],a[id=right_scr]',
-        navigationMode:'s',
-        circular:true,
-        start:0
-    });
-
+	var screen_ul = $("#screen");
+	if( screen_ul.length > 0)
+	{
+	    $('#screen').scrollShow({
+    	    view:'#view',
+        	content:'#images',
+	        easing:'backout',
+    	    wrappers:'link,crop',
+	        navigators:'a[id=left_scr],a[id=right_scr]',
+    	    navigationMode:'s',
+	        circular:true,
+    	    start:0
+	    });
+	}
 //\\\\\\\\\\\\\\\\\\\\\\\/////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////\\\\
 });
 

@@ -21,10 +21,10 @@ require_once(DOKU_INC.'inc/auth.php');
 require_once(DOKU_INC.'inc/common.php');
 
 
-include_once "function.php";
+include_once (DOKU_INC."function.php");
 
 $INFO = pageinfo();
-if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
+if($INFO["isadmin"] !== TRUE) { die("You dont have access rights " ); }
 
 
 $id          = getFormValue("id"    );
@@ -50,7 +50,7 @@ $b			 = getFormValue("b");
 
 function run_sql($sql)
 {
-	global $id, $sqlsrv,$sqlusr,$sqlpass,$sqldb, $table;
+	global $id, $table;
 	$link = connect_mysql();
     if($sql != "") 
     {   
@@ -73,11 +73,48 @@ function run_sql($sql)
     }   
 }
 
-function delete_from_sql ($a,$b)
+function delete_from_sql_with_noexisted ()
 {
-	// delete from
-	 
+    // delete from pics splash video;
+	$data_dir = data_dir();
+
+	if( $data_dir == "" || empty($data_dir) || !isset($data_dir))
+	{
+			printf("set data dir error ". $data_dir);
+			return;
+	}
+		
+	$files = array();
+    $link = connect_mysql();
+    $sql = "select * from pics,splash,video";
+    $result = mysql_query($sql);
+    if($result)
+    {   
+		while( $row = mysql_fetch_array($result,MYSQL_NUM ) )
+		{
+			foreach($row as $r)
+			{
+				if( !is_numeric($r) && !empty($r) )
+				$files[] = $r;
+			}
+		}
+    }
+	mysql_close($link); 
+	
+	$dir    = $data_dir;
+	$files1 = scandir($dir);
+	foreach ($files1 as $ff)
+	{
+		if(!in_array( $dir.$ff ,$files) && !is_dir($dir.$ff) && $ff[0] != '.' ) // Not in sql ,not dir ,not a file like .xxxx
+		{
+	//		printf("found file to delete: " .$dir. $ff. "<br />");
+			if( unlink ($dir.$ff) === FALSE) {printf ("delete ".$dir.$ff. " errored"); }
+		}
+	}
+	
+	
 }
+
 
 $sql = "";
 	if( isset($default) && $default != "")
@@ -101,6 +138,12 @@ $sql = "";
 		}
 		$sql = "delete  from ".$table." where pid=".$pid;
 		run_sql($sql);
+		if( $table == "pic")
+		{
+			$sql = "delete from pics where parent_id=".$pid;
+			run_sql($sql);
+		}
+		delete_from_sql_with_noexisted();
 		die("success");	
 	}
 

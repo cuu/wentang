@@ -23,8 +23,8 @@ if (!defined('DOKU_INC')) die();
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Author" content="Guu" />
   <title>
-    <?php tpl_pagetitle()?>
-    [<?php echo strip_tags($conf['title'])?>]
+    <?php /*tpl_pagetitle() */?>
+    <?php echo strip_tags($conf['title'])?>
   </title>
 	<?php
 		if ( $INFO['perm'] != AUTH_ADMIN )
@@ -70,6 +70,7 @@ if (!defined('DOKU_INC')) die();
 	
 	if($INFO['perm'] ==AUTH_ADMIN )
 	{
+		include_once "jquery.bubblepopup.php";
 		include_once "jquery.php"; 
 	}else
 	{

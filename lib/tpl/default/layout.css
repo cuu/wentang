@@ -358,3 +358,21 @@ form.btn_revs  /* 修订记录 */
 	background:none;
 	border:1px solid white;
 }
+
+
+
+#video_thumb_upload_progress_bar
+{
+/* only for video upload thumb img */
+	margin-left:10px;
+	padding:10px;
+	border-radius:6px;
+	border:1px solid #111;
+	box-shadow: 0px 0px 10px 0px #888;
+	float:left;	
+	display:none;
+}
+
+button
+{
+}

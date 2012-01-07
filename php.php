@@ -4,7 +4,9 @@ if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 require_once(DOKU_INC.'inc/init.php');
 
 require_once(DOKU_INC.'inc/common.php');
-$INFO=pageinfo();
+
+require_once "md5.php";
+include_once "function.php";
 
 $INFO = pageinfo();
 if($INFO["isadmin"] !== TRUE) { die("You dont have access rights"); }
@@ -149,7 +151,7 @@ class qqFileUploader {
                 $filename .= rand(10, 99);
             }
         }
-       	$filename = base64_encode( $filename);
+       	$filename = g_CRC32( $filename);
  		$filename = $filename.'.'.$ext;
 
         if ($this->file->save($uploadDirectory . $filename )){
@@ -168,6 +170,6 @@ $allowedExtensions = array();
 $sizeLimit = 150 * 1024 * 1024;
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
-$result = $uploader->handleUpload('data/media/');
+$result = $uploader->handleUpload ( data_dir() );
 // to pass data through iframe you will need to encode all html tags
 echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);

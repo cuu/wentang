@@ -121,7 +121,8 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
                 <a class="to_show_video" href="?id=video&do=video&pid=9999"><img src=""  alt="No img" /></a>
 <!--            </div> -->
                 <a  href="#" rel="" class="close_img" id="close_img" ></a>
-				<a  href="#" rel="" class="edit_img" id="edit_img" ></a>
+				<button  class="edit_img" id="edit_img" ></button>
+				<a href="#"  class="play_img" id="play_img" ></a>
                 </li>';
 		}
 		else
@@ -134,7 +135,8 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 				<a class="to_show_video" href="?id=video&do=video&pid='.$line[0].'"><img src="'.$line[1].'" alt="No img" /></a>
 <!--			</div> -->
 				<a  href="#" rel="'.$line[0].'" class="close_img" id="close_img" ></a>
-				<a  href="#" rel="'.$line[0].'" class="edit_img" id="edit_img" ></a>
+				<button rel="'.$line[0].'" class="edit_img" id="edit_img" ></button>
+				<a href="?id=video&do=video&pid='.$line[0].'"  class="play_img" id="play_img" ></a>
 				</li>';
 
 			}
@@ -183,6 +185,8 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 			echo '</ul>';
 
 			echo "<div style='clear:left;'></div>";
+			echo "<div id='video_thumb_upload_progress_bar'><img src='lib/tpl/guu/images/ajax-loader.gif' /></div>";
+			echo "<div style='clear:both;'></div>";
 			echo "</div>";
 
 echo <<<EOF

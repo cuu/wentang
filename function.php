@@ -1,6 +1,4 @@
 <?php
-function lcase($str){ return strtolower($str); }
-function ucase($str){ return strtoupper($str); }
 
 /// below is some wapper funcs forasp2php
 function now()
@@ -200,6 +198,11 @@ $sqldb  = "guu_wentang";
 
     return $link;
 }
+function data_dir()
+{
+	return "data/media/";
+}
 
+$data_dir = "data/media/";
 
 ?>

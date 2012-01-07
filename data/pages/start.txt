@@ -1,3 +1,8 @@
+<ifauth root,@admin>
+<html>
+<div style="margin:20px 10px 10px 30px;">
+</html>
+
 **首页**
 
 
@@ -19,4 +24,5 @@
 
 本系统在用户登录前后界面的色调是相反设计，主要是黑色用于外部访问，但是白色更利于后台的编辑修改与管理。
 
-
+<html></div></html>
+</ifauth>

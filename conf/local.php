@@ -5,6 +5,8 @@
  * Run for user: root
  * Date: Fri, 30 Dec 2011 20:06:31 +0800
  */
+$conf['superuser']    = '@admin'; // admin group is superuser
+
 
 $conf['title'] = '玟唐传播';
 $conf['lang'] = 'zh';

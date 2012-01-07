@@ -535,48 +535,38 @@ div.dokuwiki div.page
 }
 div.dokuwiki div.page p
 {
-	margin-left:18px;
 }
 div.dokuwiki div.page ul
 {
-	margin-left:36px;
 }
 div.dokuwiki div.page ol
 {
-	margin-left:36px;
 }
 div.dokuwiki div.page h1
 {
-	margin-left:18px;
 }
 div.dokuwiki div.page h2
 {
-    margin-left:18px;
 }
 
 div.dokuwiki div.page h3
 {
-    margin-left:18px;
 }
 
 div.dokuwiki div.page h4
 {
-    margin-left:18px;
 }
 
 div.dokuwiki div.page h5
 {
-    margin-left:18px;
 }
 
 div.dokuwiki div.page h6
 {
-    margin-left:18px;
 }
 
 div.dokuwiki div.page form
 {
-	margin-left:18px;
 }
 div.dokuwiki div.page hr
 {
@@ -586,5 +576,39 @@ div.dokuwiki div.page hr
 
 div.dokuwiki div.page .secedit
 {
-	margin-left:18px;
+}
+
+#video_thumb_upload_progress_bar
+{ display:none; }
+
+
+.edit_img
+{
+	display:none;
+}
+
+#play_img
+{
+    position:absolute;
+    cursor;pointer;
+    z-index:1004;
+    width:62px;
+    height:43px;   
+	top:30px;
+	left:35px;
+	cursor:pointer;
+    display:none;
+    background: transparent url("images/playimg.png") no-repeat; 
+	vertical-align:middle;
+}
+
+button
+{
+	border:none;
+	background:none;
+}
+
+#video_big_area
+{
+	min-height:320px;
 }
