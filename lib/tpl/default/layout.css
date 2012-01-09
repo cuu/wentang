@@ -7,7 +7,8 @@
 
 html
 {
-	background:#F5F5F5;
+	/*background:#F5F5F5;*/
+	background:#fff;
 	color:#000;
 }
 div
@@ -22,7 +23,8 @@ input,textarea
 }
 body
 {
-	background:#F5F5F5 !important;
+/*	background:#F5F5F5 !important; */
+	background:#fff;
 	color:#000;
 }
 html > body div.dokuwiki textarea.edit 
@@ -34,10 +36,10 @@ html > body div.dokuwiki input.button, html > body div.dokuwiki button.button
 {
 	background:#09b9fe;
 	color:#fff;
-	padding-left:7px;
-	padding-right:7px;
-	border-radius: 0px;
+	padding:2px 10px 2px;
+	border-radius: 5px;
 	border-image:none;
+	font-weight:bold;
 	
 }
 html > body div.dokuwiki input.edit, html > body div.dokuwiki select.edit
@@ -45,10 +47,37 @@ html > body div.dokuwiki input.edit, html > body div.dokuwiki select.edit
 	background:#fff; color:#000;
 }
 /* -------------- top row --------------- */
+.stylehead
+{
+	background:#fff;
+	height:auto;
+}
+.stylefoot
+{
+	float:left;
+	background:#fff;
+	width:365px;
+	height:200px;
+
+}
+.logo_noball
+{
+	background:black;
+}
+.bar-right
+{
+/*	display:none; */
+}
+#bar__topright
+{
+	display:none;
+}
+
+
 div.dokuwiki
 {
 	background:#fff;
-	box-shadow: 0px 0px 10px 0px #888;
+/*	box-shadow: 0px 0px 10px 0px #888; */
 }
 div.dokuwiki .header {
   padding: 3px 0 0 2px;
@@ -215,6 +244,9 @@ div.video_small_thumb
 .pic_grid
 {
 	border:1px solid #fff;
+	height:auto;
+	background:#fff;
+	min-height:1000px;
 }
 
 .bottom_container
@@ -340,12 +372,12 @@ background-color: white;
 /* 在管理中，多余的定制选项 */
 #_display, #_anti_spam,#_editing ,#_links,#_advanced ,#_network
 {
-	display:none !important;
+/*	display:none !important; */
 }
 
 #_authentication
 {
-	display:none !important;
+/*	display:none !important; */
 }
 
 form.btn_revs  /* 修订记录 */
@@ -376,3 +408,19 @@ form.btn_revs  /* 修订记录 */
 button
 {
 }
+
+
+.ui-widget-content {
+    background:white;
+    border: 1px solid #222;
+    color: #333333;
+	border-radius:8px;
+	box-shadow:0px 0px 10px 0px #888;
+
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: move;
+    display: none;
+}
+

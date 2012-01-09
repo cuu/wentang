@@ -10,6 +10,7 @@ See COPYING and file headers for license info
 
 -----------
 
-php,php with curl,iconv
+php,php with curl,iconv,gd 
+If ffmpeg can 
 
 

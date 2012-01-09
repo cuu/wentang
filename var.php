@@ -1,7 +1,9 @@
 <?php
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 
-include_once "function.php";
+include_once ("function.php");
 
-var_dump( gd_info() );
+
+echo  dwp_display_wiki_page("about");
 
 ?>

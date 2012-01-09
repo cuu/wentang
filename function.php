@@ -1,9 +1,23 @@
 <?php
 
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
+require_once(DOKU_INC.'inc/init.php');
+require_once(DOKU_INC.'inc/auth.php');
+require_once(DOKU_INC.'inc/common.php');
+
 /// below is some wapper funcs forasp2php
 function now()
 {
 	return date( "Y-m-d   H:i:s ",time()); 
+}
+
+function get_ext($str) {
+    $i = strrpos($str,".");
+    if (!$i) { return ""; }
+    $l = strlen($str) - $i; 
+    $ext = substr($str,$i+1,$l);
+    return $ext;
+	// return like jpg ,png gif avi mov...etc
 }
 
 
@@ -201,6 +215,51 @@ $sqldb  = "guu_wentang";
 function data_dir()
 {
 	return "data/media/";
+}
+function pic_thumb_size()
+{
+	return 184;
+}
+function dwp_display_wiki_page($wikipagename) 
+{
+	global $conf, $lang;
+	global $auth;
+	global $ID, $REV;
+
+	//save status
+	$backup['ID']	= $ID; 
+	$backup['REV']	= $REV;
+
+	$result = '';
+
+	//Check user permissions...
+	$perm = auth_quickaclcheck(trim(strtolower($wikipagename),":"));
+
+	if(@file_exists(wikiFN($wikipagename)))
+	{
+		if ($perm >= AUTH_READ)
+		{
+			//check page permissions
+			if ($perm >= AUTH_READ)
+			{
+				$result = p_wiki_xhtml($wikipagename,'',false);
+			}
+			else	//show access denied
+			{
+				$result = p_locale_xhtml('<b>Access Denied</b>');
+			}
+		}
+	}
+	else
+	{
+		$result = p_locale_xhtml('<b>Page not found</b>');
+	}
+
+	$ID = $backup['ID'];
+	$REV = $backup['REV'];
+
+
+	return $result;
 }
 
 $data_dir = "data/media/";

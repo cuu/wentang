@@ -33,6 +33,15 @@ $("#container").css("display","show");
 				'showNavArrows':'true'
 				});
 
+    $(".album_container").hover (function()
+    {
+        $(this).css("border-color","orange");
+    },function()
+    {
+        $(this).css("border-color","#888");
+    });
+
+
 
 	$('#sb-slider').slicebox({
 		orientation			: 'h',
@@ -43,15 +52,6 @@ $("#container").css("display","show");
 		slideshow			: true
 	});
 
-
-    $(".album_container").hover (function()
-    {
-        $(this).css("border-color","#ed811f");
-        
-    },function()
-    {
-        $(this).css("border-color","#888");
-    });
 
 
     $(".video_thumb_container").hover(function()

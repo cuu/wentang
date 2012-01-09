@@ -10,5 +10,3 @@ function g_CRC32($sMess)
 	return $psw;
 }
 ?>
-
-

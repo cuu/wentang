@@ -36,7 +36,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 		echo '
         <a  
              href="'.$file.'" 
-             style="display:block;width:960px;height:542px"  
+             style="display:block;width:800px;height:450px"  
              id="player"> 
         </a> 
     
@@ -147,7 +147,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	function result(&$event, $param){
 		global $INFO;
 		if($event->data != $this->handle) return;
-			echo "<center id='video_big_area'>";
+			echo "<div id='video_big_area'>";
 			if( isset($_GET["pid"]) && trim($_GET["pid"]) != "" )
 			{
 				$this->get_video_data($_GET["pid"]);	
@@ -156,14 +156,14 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 				if ( $INFO['perm'] == AUTH_ADMIN )
 				{
 					echo "<div class='add_big_img' id='add_big_video' style='overflow:hidden;' ><center>";
-					echo "<br /><br /><input style='width:80px;height:25px;' id='add' type='button' value='Add' /><br />";
-					echo "<span>Add image/video ,Size Max layout 798x798 px,Only <b>flv</b> can be supported ".
+					echo "<br /><br /><input class='nor_button' style='width:80px;height:25px;' id='add' type='button' value='Add' /><br />";
+					echo "<span>Add video,Layout 16:9, Only <b>flv,m4v,mov,avi,wmv,mp4,mpeg</b> can be supported ".
 					"Video upload Max:".ini_get('upload_max_filesize').
 					"</span>"; 
 					echo "</center></div>";
 				}else { $this->get_first_video(); }
 			}
-			echo "</center>";
+			echo "</div> <!-- end of video_big_area -->";
 
 			echo "<div class='bottom_container'>";
 			echo '<ul id="screen">';
@@ -175,9 +175,9 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 			$this->get_data();
 			if( $INFO['perm'] == AUTH_ADMIN ) 
 			{
-				echo "<li class='add_thumb' id='add_video_thumb'>";
-				echo "<input style='width:60px;height:25px;' id='button3' type='button' value='Add' /> <br />";
-				echo "<span> Add thumb for video, 96x96</span>";
+				echo "<li class='add_thumb' id='add_video_thumb' style='text-align:center;'>";
+				echo "<input style='width:60px;height:25px; padding:4px 12px 4px 12px;border-radius:4px; background:#0072BC;border:none; color:white; font-weight:bold;margin-left:0px;margin-top:30px;' id='button3' type='button' value='Add' /> <br />";
+				echo "<span style='font-size:10px;'> Thumbnail 120x90</span>";
 				echo "</li>";
 			}
 			echo '<li class="video_thumb_container_blank"><a style="display:none;" class="to_show_video" href="#"><img style="display:none;"  src="" /></a></li></ul></li>';

@@ -66,13 +66,16 @@ class action_plugin_splash extends DokuWiki_Action_Plugin {
 				$this->get_data();
 				echo '</ul>';
 			}
-
+	
 if($INFO["perm"] ==AUTH_ADMIN )
 {   
 	echo "<div class='add_splash' >
 	<button id='add' >添加 </button>
 	<span id='splash_slider_add_splash'>ADD a new Splash</span>
 	</div>";
+}else
+{
+	echo dwp_display_wiki_page("about");
 }
 
 if ( $INFO['perm'] == AUTH_ADMIN )

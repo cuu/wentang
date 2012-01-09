@@ -68,7 +68,7 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 	{
 			global $INFO;
 
-            echo "<center><div class='pic_grid' >";
+            echo "<center><div id='pic_grid'  class='pic_grid' >";
 
             $this->get_data( $albumid );
 if ( $INFO['perm'] == AUTH_ADMIN )
@@ -77,24 +77,28 @@ if ( $INFO['perm'] == AUTH_ADMIN )
             echo "</div></center>";
 echo <<<EOT
 <div id="add_pic_dialog" style="display:none; background-color:transparent;">    <div style="clear:both;" class="tips">        Click add to chose image to upload, once you have done the chosing ,it'll upload right away<br />
-        JPG PNG GIF Only
+        !!!!!!!!!JPG PNG Only!!!!!!!!
     </div>
     <div id="add_thumb" >
-        <input id="button1"  type='button' value='add'  style="width:55px;height:25px;line-height:25px;" />
-        <br /> <br />
-        <span>Size: 184x184 </span>
+        <!-- <input id="button1"  class="nor_button" type='button' value='add'  style="padding:4px 12px 4px 12px; border-radius:4px; background:#0072BC;border:none; color:white; font-weight:bold;margin-top:75px;" /> -->
+		<img src="" id="preview" alt="Preview" />
     </div>
     <div id="big_image">
-        <input id="button2" type="button" value="add" size=15 style="width:100px;height:25px;line-height:25px;" />
-        <br /> <br />
-        <span> Size:480x280px </span>
+			<input type="hidden" id="x" name="x" />
+			<input type="hidden" id="y" name="y" />
+			<input type="hidden" id="w" name="w" />
+			<input type="hidden" id="h" name="h" />
+
+        <input id="button2" type="button" value="add" size=15 style="width:100px;height:25px;padding:4px 12px 4px 12px;border-radius:4px; background:#0072BC;border:none; color:white; font-weight:bold;margin-top:200px;" />
+        <br /> 
+        <span> Size:960x600 </span>
     </div>
     <div style="clear:both;"></div>
     <br /><br />
 	<input id='make_it_default' type="checkbox"  />Make it be the default front page of this album
     <div id="upload" style="float:right";>
 		<img src="lib/tpl/guu/images/ajax-loader.gif" id="ajaximg" style="margin-right:20px;display:none;" />
-        <input type="button" value="Done" size=15 style="width:100px;height:25px;line-height:25px;" />
+        <input class="nor_button" type="button" value="Done" size=15 style="width:100px;height:25px;" />
         <br /> <br />
     </div>
     <input type="hidden" id="check" value="-1" />

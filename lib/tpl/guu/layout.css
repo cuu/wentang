@@ -6,32 +6,47 @@
  */
 html
 {
-	background:#2D3233;
+/*	background:#2D3233; */
+	background:#000;
 	padding:0px;
 	margin:0px;
 }
 body
 {
-	background:#2D3233 !important;
+/*	background:#2D3233 !important; */
+	background:#000;
 	color:#ccc;
 	margin:0px;
 	padding:0px;
 	top:0px;
 }
 /* -------------- top row --------------- */
+.stylehead
+{
+	text-align:center;
+	background: none repeat scroll 0 0 #101010;
+	float: left;
+	font-family: Georgia,"Times New Roman",simsun,STsong,Times,serif;
+	height: 650px;
+	padding-top: 50px;
+	text-align: center;
+	width: 365px;
+	
+}
+
 #container
 {
 	height:100%;
 }
 div.dokuwiki
 {
-	width:1024px;
+	width:100%;
 	background:#000;
 	/*padding-left:10px; */
 /*	padding-right:10px; */
 	padding-bottom:10px;
 	
-	box-shadow: 0px 0px 10px 0px #111;
+/*	box-shadow: 0px 0px 10px 0px #111; */
 
 }
 div.dokuwiki .header {
@@ -55,15 +70,16 @@ div.dokuwiki .pagename a {
 }
 
 div.dokuwiki .logo {
-	margin-left:auto;
-	margin-right:auto;
+	margin:auto 0;
+
   font-size: 220%;
   font-weight: bolder;
   text-align: center;
   vertical-align: middle;
 
-    border:1px solid #333;
-border-top: 1px solid #999;
+
+    border:1px solid #000;
+border-top: 1px solid #000;
 border-bottom: 1px solid #000;
 border-left:none;
 /*
@@ -80,14 +96,14 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endC
 background: -ms-linear-gradient(top, #505050, #343434);
 background: -o-linear-gradient(top, #505050, #343434);
 */
-
+/*
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595C64', endColorstr='#1B1B1C');
 background: -webkit-gradient(linear, left top, left bottom, from(#595C64), to(#1B1B1C));
 background: -moz-linear-gradient(top, #595C64, #1B1B1C);
 background: -o-linear-gradient(top, #595C64, #1B1B1C);
+*/
 
-
-
+margin-bottom:100px;
 }
 
 
@@ -134,7 +150,6 @@ div.dokuwiki div.meta div.doc {
 /****************** guu style ***************************/
 div.menu
 {
-	float:left;
 	font-size:14px;
 	color:#ccc;
 	/*margin-top:29px; */
@@ -143,14 +158,14 @@ div.menu
 div.menu a
 {
 	text-align:center;
-	color:#dbdbdb !important;
+	color:#626260 !important;
 	display:block !important;
 	width:113px;
 /*	height:55px; */
 	height:auto;
 	line-height:29px;
 	text-decoration:none;
-	border-top:2px solid #505050;
+	border-top:2px solid #000;
 }
 div.menu a:hover
 {
@@ -159,7 +174,7 @@ div.menu a:hover
 	text-decoration:none;	
 	/*border-top:6px solid #176092; */
 /*	background-color:#646464; */
-
+/*
 background: -webkit-gradient(linear, left top, left bottom, from(#898989), to(#4b4b4b));
 
 background: -moz-linear-gradient(top, #898989, #4b4b4b);
@@ -167,17 +182,17 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF898989, endC
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF898989, endColorstr=#FF4b4b4b)";
 background: -ms-linear-gradient(top, #898989, #4b4b4b);
 background: -o-linear-gradient(top, #898989, #4b4b4b);
-
+*/
 }
 
-#menu1 { }
-#menu2 { }
-#menu3 { }
-#menu4 { }
-#menu5 { }
-#menu6 { }
-#menu7 { }
-#menu8 { width:125px; }
+#menu1 { font-weight:bold; font-size:19px; }
+#menu2 { font-weight:bold; font-size:14px;}
+#menu3 { font-weight:bold; font-size:15px;}
+#menu4 { font-weight:bold; font-size:16px;}
+#menu5 { font-weight:bold; font-size:22px; }
+#menu6 { font-weight:bold; font-size:30px; }
+#menu7 { font-weight:bold; }
+#menu8 { font-weight:bold;  }
 #menu9 { }
 
 div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki h5 
@@ -187,8 +202,8 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
 
 .add_big_img
 {
-	width:960px;
-	height:630px;
+	width:800px;
+	height:450px;
 	border:1px  dashed gray;
 	border-radius:6px;	
 
@@ -289,7 +304,7 @@ div
     width:184px;
     height:184px;
     margin:9px 0 9px 9px;
-    border:1px solid #888;
+    border:5px solid #888;
     float:left;
     text-align:center;
 
@@ -317,7 +332,7 @@ div
 }
 #add_pic_dialog input
 {
-	background:none;
+	background:white;
 }
 #add_pic_dialog #add_thumb
 {
@@ -333,14 +348,16 @@ div
 #add_pic_dialog #big_image
 {
 	margin-top:10px;
-	line-height:48px;
 	text-align:center;
 	float:left;
-	width:640px;
-	height:480px;
+	width:auto;
+	height:auto;
+	min-width:507px;
+	min-height:488px;
+
 	margin-right:10px;
 	border:2px dashed #ccc;
-	overflow:hidden;
+	overflow:auto;
 }
 #add_pic_dialog .tips
 {
@@ -408,7 +425,7 @@ div
         }
     #view{
         margin:20px;
-        width:860px;
+        width:641px;
         border:1px  solid black;
         height:120px;
         overflow:hidden;
@@ -501,29 +518,29 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endC
 background: -ms-linear-gradient(top, #505050, #343434);
 background: -o-linear-gradient(top, #505050, #343434);
 */
-
+/*
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595C64', endColorstr='#1B1B1C');
 background: -webkit-gradient(linear, left top, left bottom, from(#595C64), to(#1B1B1C));
 background: -moz-linear-gradient(top, #595C64, #1B1B1C);
 background: -o-linear-gradient(top, #595C64, #1B1B1C);
+*/
+border:1px solid #000;
 
-border:1px solid #333;
-
-border-top: 1px solid #999;
+border-top: 1px solid #000;
 border-bottom: 1px solid #000;
 border-right:none;
 }
 
 .logo_noball
 {
-
+/*
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595C64', endColorstr='#1B1B1C');
 background: -webkit-gradient(linear, left top, left bottom, from(#595C64), to(#1B1B1C));
 background: -moz-linear-gradient(top, #595C64, #1B1B1C);
 background: -o-linear-gradient(top, #595C64, #1B1B1C);
+*/
 
-
-border-top: 1px solid #999;
+border-top: 1px solid #000;
 border-bottom: 1px solid #000; 
 	
 }
@@ -531,7 +548,14 @@ border-bottom: 1px solid #000;
 div.dokuwiki div.page 
 {
 	min-height:320px;
-	overflow:hidden;
+/*	overflow:hidden; */
+	position:absolute;
+	left:365px;
+	top:40px;
+/*	margin-left:300px; 
+	padding-left:40px;
+*/
+	padding-bottom:35px;
 }
 div.dokuwiki div.page p
 {
@@ -611,4 +635,21 @@ button
 #video_big_area
 {
 	min-height:320px;
+}
+
+.nor_button
+{
+    padding:4px 12px 4px 12px;
+    border-radius:5px;
+    background:#0072BC !important;
+    border:none;
+    color:white; 
+ 	           
+	font-weight:bold;
+}
+
+
+.wikipage
+{
+	margin:20px  10px 10px 30px;
 }

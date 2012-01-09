@@ -70,6 +70,7 @@ if (!defined('DOKU_INC')) die();
 	
 	if($INFO['perm'] ==AUTH_ADMIN )
 	{
+		include_once "jquery.jcrop.php";
 		include_once "jquery.bubblepopup.php";
 		include_once "jquery.php"; 
 	}else
@@ -85,19 +86,18 @@ if (!defined('DOKU_INC')) die();
 <center id="container">
 <div class="dokuwiki">
 
-  <div class="stylehead" style="">
+  <div class="stylehead" style="float:left;">
 
     <div class="header" style="margin-top:0px; margin-bottom:20px;">
-		<div class='bb'>
-			
-		</div>
-		<div class='logo_noball' style="height:60px;width:100px; text-align:center; line-height:60px; margin-left:0px;float:left; ">
+		<div class='logo_noball' style="height:60px;width:100px; text-align:center; line-height:60px; margin-left:100px; ">
 			<img src="lib/tpl/guu/images/wentang_logo_noball.png" style="vertical-align:middle;margin-top:7px;" /> 
 		</div>
-      <div class="logo"  style="float:left;color:red;">
+      <div class="logo"  style="color:red; margin-left:100px;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
 
       </div>
+
+ <?php /*old includehook*/ @include(dirname(__FILE__).'/footer.php')?>
 
       <div class="clearer"></div>
     </div>
@@ -161,7 +161,6 @@ if (!defined('DOKU_INC')) die();
       </div>
     </div>
 
-   <?php /*old includehook*/ @include(dirname(__FILE__).'/pagefooter.html')?>
 
 <?php
 	if ( $INFO['perm'] == AUTH_ADMIN )
@@ -191,7 +190,6 @@ if (!defined('DOKU_INC')) die();
   </div>
 
 
-<?php /*old includehook*/ @include(dirname(__FILE__).'/footer.php')?>
 </div>
 </center>
 

@@ -1,4 +1,4 @@
-a:7:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:0;}i:2;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:1;i:1;a:2:{i:0;s:4:"root";i:1;s:6:"@admin";}}i:2;i:1;i:3;s:20:"<ifauth root,@admin>";}i:2;i:1;}i:3;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:3;i:1;s:1107:"
+a:7:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:0;}i:2;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:1;i:1;a:2:{i:0;s:4:"root";i:1;s:6:"@admin";}}i:2;i:1;i:3;s:20:"<ifauth root,@admin>";}i:2;i:1;}i:3;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:3;i:1;s:1108:"
 <html>
 <div style="margin:20px  10px 10px 30px ;">
 </html>
@@ -21,8 +21,9 @@ a:7:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"p_o
 如果登录了
 当鼠标移动到每个作品上的时候，右上角会出现一个** __X__** 的 圆图片，点击这个**__X__**  就可以 马上删除此视频，要小心操作 ，**__一切操作不可挽回。__**
 
+
 <html></div></html>
-";}i:2;i:3;i:3;s:1107:"
+";}i:2;i:3;i:3;s:1108:"
 <html>
 <div style="margin:20px  10px 10px 30px ;">
 </html>
@@ -45,5 +46,6 @@ a:7:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"p_o
 如果登录了
 当鼠标移动到每个作品上的时候，右上角会出现一个** __X__** 的 圆图片，点击这个**__X__**  就可以 马上删除此视频，要小心操作 ，**__一切操作不可挽回。__**
 
+
 <html></div></html>
-";}i:2;i:21;}i:4;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:4;i:1;s:0:"";}i:2;i:4;i:3;s:9:"</ifauth>";}i:2;i:1128;}i:5;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:1137;}i:6;a:3:{i:0;s:12:"document_end";i:1;a:0:{}i:2;i:1137;}}
+";}i:2;i:21;}i:4;a:3:{i:0;s:6:"plugin";i:1;a:4:{i:0;s:6:"ifauth";i:1;a:2:{i:0;i:4;i:1;s:0:"";}i:2;i:4;i:3;s:9:"</ifauth>";}i:2;i:1129;}i:5;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:1138;}i:6;a:3:{i:0;s:12:"document_end";i:1;a:0:{}i:2;i:1138;}}

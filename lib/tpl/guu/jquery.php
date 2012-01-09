@@ -43,6 +43,13 @@ function explode (delimiter, string, limit)
     return partA;
 }// func end
 
+function make_photo( file,thumb,id)
+{
+
+	return '<div class="pic_container"> <div class="pic"> <a rel="group1" href="'+file+'" ><img alt="pics" src="'+thumb+'"></a></div> <a href="#" rel="'+id+'" class="close_img" id="close_img" style="display: none; "></a> </div>';
+
+
+}
 jQuery.noConflict();	
 jQuery(document).ready(function($) {
 
@@ -126,11 +133,52 @@ $("#container").css("display","show");
 		$("#add_splash_dialog").dialog("close");
 		location.reload(true);
 	});
-
+	
 	$("#add_pic_dialog  #upload  input").click ( function()
 	{
+		if (parseInt($('#big_image #w').val())) 
+		{
+				/*
+				$.ajax({
+					type: 'POST',
+					url: 'preview.php?src='+$("#big_image #preview").attr("src")+"&id="+$("#add_pic_dialog     #check").val()+"&x="+$("#big_image #x").val()+"&y="+$("#big_image #y").val()+"&w="+$("#big_image #w").val()+"&h="+$("#big_image #h").val(),
+					success: function(data)
+					{
+						alert(data);
+					}
+				});
+				*/
+				
+				$.post('preview.php',
+				{ src:$("#add_thumb #preview").attr("src"),id:$("#add_pic_dialog  #check").val(),x:$("#big_image #x").val(),y:$("#big_image #y").val(),w:$("#big_image #w").val(),h:$("#big_image #h").val() }, function(data) 
+			{
+				var abc = $.evalJSON( data  ).success;	
+				if(abc)
+				{
+					/*
+					var file = $("#add_thumb #preview").attr("src");
+					var thumb = abc;
+					var id = $("#add_pic_dialog  #check").val();
+					$("#pic_grid").append ( make_photo(file,thumb,id));						
+					*/
+					location.reload(true);
+				}
+				else
+				{
+					alert(data);
+				}
+			});
+				
+
+	
+///			location.reload(true);	
+		}
+		else
+		{
+			alert('Please select a crop region then press submit.');
+		}
+
 		$("#add_pic_dialog").dialog('close');
-		location.reload(true);	
 	});
 	
 	$(".add_album #add ").click (function()
@@ -507,6 +555,31 @@ echo "</center></div>";
     var button2 = $('#big_image #button2');
 	if(button2.length != 0 )
 	{
+	  var jcrop_api, boundx, boundy;
+		function updateCoords(c)
+		{
+				$('#big_image #x').val(c.x);
+				$('#big_image #y').val(c.y);
+				$('#big_image #w').val(c.w);
+				$('#big_image #h').val(c.h);
+		};
+
+      function updatePreview(c)
+      {
+        if (parseInt(c.w) > 0)
+        {
+          var rx = 100 / c.w;
+          var ry = 100 / c.h;
+
+          $('#preview').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+		updateCoords(c);
+      }
     new AjaxUpload(button2,{
         //action: 'upload-test.php',
         action: 'php.php', 
@@ -555,9 +628,25 @@ echo "</center></div>";
 					}
 				});
 	
-				$("#big_image").append("<img src='"+real_file+"' />")
-					
-               	$("#big_image img:last-child").draggable(); 
+				$("#big_image").append("<img id='target' src='"+real_file+"' />")
+				$("#add_thumb #preview").attr("src", real_file);
+
+               	//$("#big_image img:last-child").draggable();
+				$('#target').Jcrop({
+					onChange: updatePreview,
+					onSelect: updatePreview,
+					aspectRatio: 1,
+					},function(){
+					// Use the API to get the real image size
+					var bounds = this.getBounds();
+						boundx = bounds[0];
+						boundy = bounds[1];
+						// Store the API in the jcrop_api variable
+						jcrop_api = this;
+						jcrop_api.ui.holder.addClass('jcrop-dark');
+        				jcrop_api.setOptions({ bgColor: 'black', bgOpacity: 0.4 });
+					});
+			
 				
             }else
             {
@@ -733,7 +822,9 @@ echo "</center></div>";
 						$("#add_video .qq-upload-list").fadeOut(3500)
 
                     }
-                }); 
+                });
+			// next I will ajax to update the thumb of this video !
+				 
             }else
             {
                 info.text("Error!" + response.success);
