@@ -56,7 +56,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	}
 	function get_first_video()
 	{
-        $sql = "select * from ".$this->table."  ORDER BY pid LIMIT 1";
+        $sql = "select * from ".$this->table."  ORDER BY pid desc LIMIT 1";
 
         $link = connect_mysql();
 
@@ -109,7 +109,7 @@ class action_plugin_video extends DokuWiki_Action_Plugin {
 	function get_data()
 	{
 		//get data from  mysql databases
-        $sql = "select * from ".$this->table;
+        $sql = "select * from ".$this->table ." ORDER BY pid desc";
         $link = connect_mysql();
         $result = mysql_query( $sql ) or die('Query failed: ' . mysql_error());
 		
@@ -201,7 +201,7 @@ echo <<<EOF
 
 	<!-- <input type="button" value="upload video thumb" id="add_video_thumb_pic" style="height:25px; width:160px; margin-left:15px;" /> -->
 	
-    <div id="add_video_small_thumb" style="float:left;">
+    <div id="add_video_small_thumb" style="float:left;display:none;">
            <noscript> 
 			<p>Please enable JavaScript to use file uploader.</p>
 			<!-- or put a simple form for upload here -->        
@@ -214,11 +214,14 @@ echo <<<EOF
 	<br />
 	<span id='info'></span>	
 	<br />
-	<div id="video_area" >
+	<div id="video_area">
 	</div>
-	<br /> Or&nbsp; you can embed a video from youku or tudou <br /> 
-	<span>URL:&nbsp;</span>
-	<textarea id="url_bar" cols="60" rows="10" ></textarea> <br /> <br />
+	<div style="display:none;">
+		<br /> Or&nbsp; you can embed a video from youku or tudou <br /> 
+		<span>URL:&nbsp;</span>
+		<textarea id="url_bar" cols="60" rows="10" ></textarea> <br /> <br />
+	</div>
+	
 	<img src ="lib/tpl/guu/images/ajax-loader.gif" id="ajaximg" style="display:none;" /> <br />
 	<input type="button" id="done" value="Done" style="height:25px;width:80px;"/>
 	<span id='ert' ></span>

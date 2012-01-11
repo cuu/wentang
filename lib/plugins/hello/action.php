@@ -86,8 +86,8 @@ echo <<<EOT
     <div id="big_image">
 			<input type="hidden" id="x" name="x" />
 			<input type="hidden" id="y" name="y" />
-			<input type="hidden" id="w" name="w" />
-			<input type="hidden" id="h" name="h" />
+			<input type="hidden" id="w" name="w" value="184" />
+			<input type="hidden" id="h" name="h" value="184" />
 
         <input id="button2" type="button" value="add" size=15 style="width:100px;height:25px;padding:4px 12px 4px 12px;border-radius:4px; background:#0072BC;border:none; color:white; font-weight:bold;margin-top:200px;" />
         <br /> 

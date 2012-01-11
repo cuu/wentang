@@ -202,10 +202,22 @@ function check_root()
 
 function connect_mysql()
 {
-$sqlsrv = "127.0.0.1";
-$sqlusr = "root";
-$sqlpas = ""; 
-$sqldb  = "guu_wentang";
+
+if( strstr( $_SERVER["SERVER_NAME"],"127.0.0.1"))
+{
+	$sqlsrv = "127.0.0.1";
+	$sqlusr = "root";
+	$sqlpas = ""; 
+	$sqldb  = "guu_wentang";
+}
+if( strstr( $_SERVER["SERVER_NAME"],"wentang"))
+{
+	$sqlsrv = "127.0.0.1";
+	$sqlusr = "dphysus_wentang";
+	$sqlpas = "e=mc2"; 
+	$sqldb  = "dphysus_wentang";
+}
+
  
     $link = mysql_connect ( $sqlsrv, $sqlusr,$sqlpas) or die("mysql connect error".mysql_error() );
     mysql_select_db($sqldb,$link);
@@ -218,8 +230,17 @@ function data_dir()
 }
 function pic_thumb_size()
 {
+	return array(184,184);
+}
+function pic_thumb_w()
+{
 	return 184;
 }
+function pic_thumb_h()
+{
+	return 184;
+}
+
 function dwp_display_wiki_page($wikipagename) 
 {
 	global $conf, $lang;

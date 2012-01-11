@@ -14,7 +14,7 @@ jQuery.noConflict();
 jQuery(document).ready(function($) {
 
 
-$("#container").fadeIn(3400);	
+$("#container").fadeIn(2000);	
 $("#container").css("display","show");
 
     $.easing.backout = function(x, t, b, c, d){

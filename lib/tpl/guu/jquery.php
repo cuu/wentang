@@ -1,3 +1,7 @@
+<?php if (!defined('DOKU_INC')) die(); ?>
+<?php 
+	include_once (DOKU_INC."function.php");
+?>
 
 <script type="text/javascript" charset="utf-8" src="lib/tpl/guu/js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" charset="utf-8" src="lib/tpl/guu/js/jquery.json-2.3.min.js"></script>
@@ -62,7 +66,7 @@ $.fn.enable = function()
 	$(this).removeAttr("disabled");
 }
 
-$("#container").fadeIn(3400);	
+$("#container").fadeIn(2000);	
 $("#container").css("display","show");
 
 
@@ -568,8 +572,8 @@ echo "</center></div>";
       {
         if (parseInt(c.w) > 0)
         {
-          var rx = 100 / c.w;
-          var ry = 100 / c.h;
+          var rx = <?php echo pic_thumb_w(); ?>/ c.w;
+          var ry = <?php echo pic_thumb_h(); ?>/ c.h;
 
           $('#preview').css({
             width: Math.round(rx * boundx) + 'px',
@@ -584,6 +588,7 @@ echo "</center></div>";
         //action: 'upload-test.php',
         action: 'php.php', 
         name: 'qqfile',
+		allowedExtensions: ["jpg","jpeg","png","gif"],
         onSubmit : function(file, ext){
             button2.text('Uploading');
             button2.disable();
@@ -666,6 +671,7 @@ echo "</center></div>";
 	var uploader4 = new qq.FileUploader({
 		element: $('#add_video_dialog #add_video_small_thumb')[0],
 		action: 'php.php', name: 'qqfile',debug: true,
+		allowedExtensions: ["jpg","jpeg","png","gif"],
 		text:"Upload a  video thumb image ",
 		onSubmit: function(id, fileName){
 			$("#add_video_small_thumb .qq-upload-list").fadeIn("fast");
@@ -798,6 +804,7 @@ echo "</center></div>";
 	var uploader5 = new qq.FileUploader({
 		element: $('#add_video_dialog #add_video')[0],
 		action: 'php.php', name: 'qqfile',debug: true,
+		allowedExtensions: ["flv","m4v","mov","wmv","avi","mpeg","mp4","mpg"], 
 		text:"Upload a  video",
 		onSubmit: function(id, fileName){
 			$("#add_video .qq-upload-list").fadeIn("fast");
@@ -810,7 +817,7 @@ echo "</center></div>";
             {
                 var real_file =  response.success;
                 $.ajax({
-                    url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+                "&tab=video&parent=9999",
+                    url: "mysql.php?id="+ $("#add_video_dialog #check").val() +"&data="+real_file+"&tab=video&parent=9999",
                     success: function(data){
                 //      alert(data);
                         if( !isNaN(parseInt(data))  && parseInt($("#add_video_dialog #check").val() ) == -1 )
@@ -819,8 +826,16 @@ echo "</center></div>";
                         //  alert( $("#add_pic_dialog #check").val() );
                         }
 						
-						$("#add_video .qq-upload-list").fadeOut(3500)
-
+						// next I will ajax to create the thumb of this video !
+						$.ajax({
+							url:"preview.php?id="+$("#add_video_dialog #check").val()+"&src="+real_file,
+							success: function(data)
+							{	
+								info.text( info.text() +" & thumb = "+ data );
+							}
+						});
+						
+					//	$("#add_video .qq-upload-list").fadeOut(3500);
                     }
                 });
 			// next I will ajax to update the thumb of this video !

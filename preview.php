@@ -1,7 +1,8 @@
 <?php
 /*
 	Create preview image
-	table pid video file
+	id &  src
+	stored in data_dir(); 
 
 */
 
@@ -9,10 +10,10 @@ if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 
 include_once (DOKU_INC."function.php");
 include_once (DOKU_INC."md5.php");
-/*
+
 $INFO = pageinfo();
 if($INFO["isadmin"] !== TRUE) { die("You dont have access rights " ); }
-*/
+
 
 function json_return($array)
 {
@@ -47,7 +48,7 @@ function create_video_thumb($flv,$ffbin)
 	$output = array();
 	$duration = mbmGetFLVDuration($flv,$ffbin);
 	$ss = random_duration($duration);
-	$outfile = get_out_file_name("jpg");
+	$outfile = data_dir().get_out_file_name("jpg");
 
 	$cmd_line = $ffbin."  -ss ".$ss." -i ".$flv." -f image2 -vframes 1 -s 120x90 ".$outfile."  2>&1";
 	$ret = exec($cmd_line,$output);
@@ -57,7 +58,8 @@ function create_video_thumb($flv,$ffbin)
 }
 function create_image_thumb($fn)
 {
-    $targ_w = $targ_h = pic_thumb_size();
+    $targ_w = pic_thumb_w();
+	$targ_h = pic_thumb_h();
     
     $quality = 90; 
 	$ext = get_ext($fn);
@@ -142,8 +144,6 @@ function create_thumb( $f ,$type)
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')  // create image thumb 
 {    
-	
-
     $src = getFormValue("src");
 //	$id = getFormValue("id");  // the sql id of this image	
 	$id = $_POST["id"];
@@ -168,12 +168,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')  // create image thumb
 	}
 	else
 	{
-		echo  json_return( array("error" =>"create image thumb failed" ) );
+		die(   json_return( array("error" =>"create image thumb failed" ) ) );
 	}
 }
 else  /// here is video thumb
 {
+	$src = getFormValue("src");
+	$id  = getFormValue("id" );
 
+	if(!is_numeric($id) ) die("fuckid ".$id);
+    if(strlen($src) < 3) die("fucksrc ".$src);
+	
+	$tfile = create_thumb($src,"v");
+	if($tfile !== FALSE)
+	{
+		$link = connect_mysql();
+		$sql = "update video set thumb='".$tfile."' where pid=".$id;
+		$result = mysql_query($sql);
+		if($result)
+		{
+			mysql_close($link);
+			die( json_return( array('success'=>$tfile) ) );
+		}else
+		{
+			mysql_close($link);
+			die( json_return( array("error" =>  mysql_error() )) );
+		}	
+	}
+	else
+	{
+		die(  json_return( array("error" => "create video thumb failed,ffmpeg_bin= ".$ffmpeg_bin )) );
+	}	
 }
 
 ?>
