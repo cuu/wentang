@@ -14,7 +14,6 @@
 
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,10 +88,10 @@ if (!defined('DOKU_INC')) die();
   <div class="stylehead" style="float:left;">
 
     <div class="header" style="margin-top:0px; margin-bottom:20px;">
-		<div class='logo_noball' style="height:60px;width:100px; text-align:center; line-height:60px; margin-left:100px; ">
+		<div class='logo_noball' style="height:100px;width:100px; text-align:center; line-height:60px; margin:0 auto; ">
 			<img src="lib/tpl/guu/images/wentang_logo_noball.png" style="vertical-align:middle;margin-top:7px;" /> 
 		</div>
-      <div class="logo"  style="color:red; margin-left:100px;">
+      <div class="logo"  style="color:red; margin:0 auto;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
 
       </div>

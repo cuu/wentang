@@ -45,7 +45,7 @@ $("#container").css("display","show");
 
 	$('#sb-slider').slicebox({
 		orientation			: 'h',
-		slicesCount			: 3,
+		slicesCount			: 1,
 		disperseFactor		: 25,
 		sequentialRotation	: true,
 		sequentialFactor	: 140,

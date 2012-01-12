@@ -5,4 +5,12 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <andi@splitbrain.org>
  */
-header("Location: doku.php?id=start&do=splash");
+if( count($_GET) == 0)
+{
+	header("Location: index.php?id=start&do=splash");
+}
+else
+{
+	include_once "doku.php";
+}
+?>

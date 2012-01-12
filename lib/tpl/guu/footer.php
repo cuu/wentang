@@ -1,5 +1,5 @@
 <!-- <center> -->
-    <div class="piped right" style="line-height:20px;height:100%;width:100%;text-align:center;clear:both;">
+    <div class="piped right" style="line-height:20px;height:100%;width:100%;text-align:center;clear:both;margin-top:100px;">
     <span style="font-size:14px;text-align:center; color:#626260;" >
             Copyright &copy<?php echo date("Y"); ?> 
 			<span style="margin-left:5px;font-size:12px;color:#fff;;">

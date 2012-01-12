@@ -34,7 +34,7 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 		while ($line = mysql_fetch_array($result, MYSQL_NUM)) //0 pid 1:data 2:parentid 3:thumb 
 		{
 			
-			echo "<div class='pic_container'><div class='pic' >"."<a rel='group1'  href='".$line[1]."'>"."<img alt='pics' src='".$line[3]."' /></a></div> <a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a></div>";
+			echo "<div class='pic_container'><div class='pic' >"."<a rel='group1'  href='".$line[1]."'>"."<img alt='pics' src='".$line[3]."' /></a></div> <a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a><button rel=\"".$line[3]."\" class=\"edit_img\" id=\"edit_img\"></button></div>";
 		}
 		mysql_close($link);	
 	}
@@ -49,7 +49,9 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
         {
 
             echo "<div class='album_container'>"."<a  href='?do=hello&album=".$line[0]."'>"."<img alt='album' src='".$line[2]."' /></a>
-				<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a></div>";
+				<a  href='#' rel=\"".$line[0]."\"  class='close_img' id='close_img' ></a></div>
+				<button rel='".$line[1]."' class='edit_img' id='edit_img' ></button>
+				";
         }
 		
         mysql_close($link);
@@ -68,7 +70,7 @@ class action_plugin_hello extends DokuWiki_Action_Plugin {
 	{
 			global $INFO;
 
-            echo "<center><div id='pic_grid'  class='pic_grid' >";
+            echo "<div id='msgbox' ></div><center><div id='pic_grid'  class='pic_grid' >";
 
             $this->get_data( $albumid );
 if ( $INFO['perm'] == AUTH_ADMIN )
@@ -77,7 +79,7 @@ if ( $INFO['perm'] == AUTH_ADMIN )
             echo "</div></center>";
 echo <<<EOT
 <div id="add_pic_dialog" style="display:none; background-color:transparent;">    <div style="clear:both;" class="tips">        Click add to chose image to upload, once you have done the chosing ,it'll upload right away<br />
-        !!!!!!!!!JPG PNG Only!!!!!!!!
+        !!!!!!!!!JPG,JPEG,PNG Only!!!!!!!!
     </div>
     <div id="add_thumb" >
         <!-- <input id="button1"  class="nor_button" type='button' value='add'  style="padding:4px 12px 4px 12px; border-radius:4px; background:#0072BC;border:none; color:white; font-weight:bold;margin-top:75px;" /> -->
@@ -95,7 +97,7 @@ echo <<<EOT
     </div>
     <div style="clear:both;"></div>
     <br /><br />
-	<input id='make_it_default' type="checkbox"  />Make it be the default front page of this album
+<!--	<input id='make_it_default' type="checkbox"  />Make it be the default front page of this album -->
     <div id="upload" style="float:right";>
 		<img src="lib/tpl/guu/images/ajax-loader.gif" id="ajaximg" style="margin-right:20px;display:none;" />
         <input class="nor_button" type="button" value="Done" size=15 style="width:100px;height:25px;" />

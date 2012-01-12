@@ -84,21 +84,36 @@ $("#container").css("display","show");
 	{
 		if( $(this).attr('checked') == "checked")
 		{
-			var thumb_img = $("#add_pic_dialog #add_thumb img:last-child").attr("src");
-
-			if( thumb_img != undefined )
-			{
-				$.ajax({
-					url:"mysql.php?default="+thumb_img+"&parent=<?php echo $_GET["album"]; ?>",
-					success:function(data)
-					{
-						
-					}
-				});
-			}else
-			{
-				alert("亲，请先选择一张存在的缩略图吧");
-			}
+				var thumb_img;
+				
+			    $.post('preview.php',
+                { src:$("#add_thumb #preview").attr("src"),id:$("#add_pic_dialog  #check").val(),x:$("#big_image  #x").val(),y:$("#big_image #y").val(),w:$("#big_image #w").val(),h:$("#big_image #h").val() }, function(data){
+                var abc = $.evalJSON( data  ).success;  
+                if(abc)
+                {
+                    /*
+                    var file = $("#add_thumb #preview").attr("src");
+                    var thumb = abc;
+                    var id = $("#add_pic_dialog  #check").val();
+                    $("#pic_grid").append ( make_photo(file,thumb,id));                     
+                    */
+					thumb_img = abc;
+            		if( thumb_img != undefined )
+            		{
+                		$.ajax({
+                    		url:"mysql.php?default="+thumb_img+"&parent=<?php echo $_GET["album"]; ?>",
+                    		success:function(data){ }
+                		});
+            		}else
+            		{
+                		alert("亲，请先选择一张存在的缩略图吧");
+            		}			
+                }
+                else
+                {
+                    alert(data);
+                }
+			});
 		}
     
 	});
@@ -370,9 +385,11 @@ echo "</center></div>";
 	$(".pic_container").hover(function()
 	{
 		$(this).find("#close_img").fadeIn("fast");
+		$(this).find("#edit_img").fadeIn("fast");
 	},function()
 	{
 		$(this).find("#close_img").fadeOut("fast");
+		$(this).find("#edit_img").fadeOut("fast");
 	});
 
 	$(".pic_container .close_img").click(function()
@@ -401,16 +418,39 @@ echo "</center></div>";
         }	
 	});
 
+
+var edit_b = $('.pic_container .edit_img');
+	if( edit_b.length > 0)
+	{
+		$(".pic_container .edit_img").click(function() 
+		{
+			var thumb_img = $(this).attr("rel");
+			$("#msgbox").fadeOut();
+			$("#msgbox").html("Set album front page now !....");
+			$("#msgbox").fadeIn("fast");
+
+           		$.ajax({
+              		url:"mysql.php?default="+thumb_img+"&parent=<?php echo $_GET["album"]; ?>",
+               		success:function(data){
+						$("#msgbox").html("Done! Now the front page of this album is changed!");
+						$("#msgbox").fadeOut(10000);
+					}
+           		});	
+		});
+
+	}	
+
+///////////////////////////////////////////////////////////////////////////////////
 	$(".video_thumb_container").hover(function()
 	{
 		
 		$(this).find("#close_img").fadeIn("fast");
 
-		$(this).find("#edit_img").fadeIn("fast");
+//		$(this).find("#edit_img").fadeIn("fast");
 	},function()
 	{
 		$(this).find("#close_img").fadeOut("fast");
-		$(this).find("#edit_img").fadeOut("fast");
+//		$(this).find("#edit_img").fadeOut("fast");
 	});
 	
 	$(".video_thumb_container .close_img").click(function()
@@ -439,6 +479,7 @@ echo "</center></div>";
 	
 	});
 
+/*
 	var edit_a = $('.video_thumb_container .edit_img');
 	if( edit_a.length > 0)
 	{
@@ -473,18 +514,9 @@ echo "</center></div>";
 
 		});	
 		
-		/*
-		$(".video_thumb_container .edit_img").click(function()
-		{
-			
-			var edit = $(this);		
-			edit.ShowBubblePopup();
-			//edit.FreezeBubblePopup(); then remove it RemoveBubblePopup()
-			
-		});
-		*/
 		
 	}
+*/
 //  $("#add_pic_dialog").dialog( { autoOpen: false } );
 
 	var button = $('#add_thumb #button1');
