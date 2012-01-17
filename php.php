@@ -149,7 +149,7 @@ class qqFileUploader {
             }
         }
        	$filename = g_CRC32( $filename);
- 		$filename = $filename.'.'.$ext;
+ 		$filename = $filename.'.'.strtolower($ext);
 
         if ($this->file->save($uploadDirectory . $filename )){
             return array('success'=> ($uploadDirectory . $filename ) );

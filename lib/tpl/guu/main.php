@@ -82,14 +82,13 @@ if (!defined('DOKU_INC')) die();
 </head>
 
 <body>
-<center id="container">
 <div class="dokuwiki">
 
-  <div class="stylehead" style="float:left;">
+  <div class="stylehead" >
 
     <div class="header" style="margin-top:0px; margin-bottom:20px;">
 		<div class='logo_noball' style="height:100px;width:100px; text-align:center; line-height:60px; margin:0 auto; ">
-			<img src="lib/tpl/guu/images/wentang_logo_noball.png" style="vertical-align:middle;margin-top:7px;" /> 
+			<img src="lib/tpl/guu/images/wentang_logo_noball.jpg" style="vertical-align:middle;margin-top:7px;" /> 
 		</div>
       <div class="logo"  style="color:red; margin:0 auto;">
 		<?php /*old includehook*/ @include(dirname(__FILE__).'/logo.html')?>
@@ -140,9 +139,7 @@ if (!defined('DOKU_INC')) die();
   <?php /*old includehook*/ @include(dirname(__FILE__).'/pageheader.html')?>
 
   <div class="page">
-    <!-- wikipage start -->
     <?php tpl_content()?>
-    <!-- wikipage stop -->
   </div>
 
   <div class="clearer"></div>
@@ -190,7 +187,6 @@ if (!defined('DOKU_INC')) die();
 
 
 </div>
-</center>
 
 <div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>
 </body>

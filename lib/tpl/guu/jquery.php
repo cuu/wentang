@@ -432,7 +432,7 @@ var edit_b = $('.pic_container .edit_img');
            		$.ajax({
               		url:"mysql.php?default="+thumb_img+"&parent=<?php echo $_GET["album"]; ?>",
                		success:function(data){
-						$("#msgbox").html("Done! Now the front page of this album is changed!");
+						$("#msgbox").html("<span style='color:red;'>OK!</span> Now the front page of this album is changed!");
 						$("#msgbox").fadeOut(10000);
 					}
            		});	

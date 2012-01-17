@@ -203,19 +203,18 @@ function check_root()
 function connect_mysql()
 {
 
-if( strstr( $_SERVER["SERVER_NAME"],"127.0.0.1"))
-{
-	$sqlsrv = "127.0.0.1";
-	$sqlusr = "root";
-	$sqlpas = ""; 
-	$sqldb  = "guu_wentang";
-}
 if( strstr( $_SERVER["SERVER_NAME"],"wentang"))
 {
 	$sqlsrv = "127.0.0.1";
 	$sqlusr = "dphysus_wentang";
 	$sqlpas = "e=mc2"; 
 	$sqldb  = "dphysus_wentang";
+}else
+{
+    $sqlsrv = "127.0.0.1";
+    $sqlusr = "root";
+    $sqlpas = ""; 
+    $sqldb  = "guu_wentang";
 }
 
  

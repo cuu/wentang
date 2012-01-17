@@ -41,7 +41,7 @@ $("#container").css("display","show");
         $(this).css("border-color","#888");
     });
 
-
+	
 
 	$('#sb-slider').slicebox({
 		orientation			: 'h',
@@ -52,7 +52,7 @@ $("#container").css("display","show");
 		slideshow			: true
 	});
 
-
+	
 
     $(".video_thumb_container").hover(function()
     {
@@ -63,6 +63,7 @@ $("#container").css("display","show");
     {
         $(this).find("#play_img").fadeOut("fast");
     })
+
 
     $('#screen').scrollShow({
         view:'#view',

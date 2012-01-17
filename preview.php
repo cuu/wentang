@@ -89,7 +89,7 @@ function create_image_thumb($fn)
 
 	if($ext == "png")
 	{
-		imagepng($dst_r, $ret,$quality);
+		imagepng($dst_r, $ret,7);
 		return $ret;
 	}
 
